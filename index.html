@@ -71,9 +71,13 @@
       .stage {
         display: flex;
         min-height: 100dvh;
+        align-items: flex-start;
         justify-content: center;
         padding: 1.5rem 1rem 2rem;
         background-image: radial-gradient(120% 55% at 50% -12%, var(--wash), transparent 58%);
+      }
+      @media (min-width: 640px) {
+        .stage { align-items: center; padding: 2.5rem 1.5rem; }
       }
       .sheet {
         display: flex;
@@ -271,9 +275,8 @@
             <span class="fallback">YJ</span>
           </span>
           <h1>Yisheng Jiang</h1>
-          <p class="handle">@yishengjiang99 · Palo Alto</p>
+          <p class="handle">@yishengjiang99 · GrepAwk · Palo Alto</p>
           <p class="bio">Browser tools for video, audio, and graphics. FFmpeg, WASM, and canvas.</p>
-          <p class="org">GrepAwk</p>
         </header>
 
         <nav class="social rise d2" aria-label="Social">
