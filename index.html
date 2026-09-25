@@ -6,9 +6,9 @@
     <title>Yisheng Jiang</title>
     <meta
       name="description"
-      content="Yisheng Jiang — browser tools for video, photo, audio, and graphics. GrepAwk, Palo Alto."
+      content="Yisheng Jiang — browser tools for video, photo, audio, and graphics. GrepAwk."
     />
-    <meta name="theme-color" content="#f4efe6" />
+    <meta name="theme-color" content="#eef3f2" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,31 +28,31 @@
                 : "light";
           document.documentElement.dataset.theme = t;
           var meta = document.querySelector('meta[name="theme-color"]');
-          if (meta) meta.setAttribute("content", t === "dark" ? "#12100e" : "#f4efe6");
+          if (meta) meta.setAttribute("content", t === "dark" ? "#0d1211" : "#eef3f2");
         } catch (e) {}
       })();
     </script>
     <style>
       :root {
-        --bg: #f4efe6;
-        --surface: #fffdf8;
-        --fg: #1c1814;
-        --muted: #6e655c;
-        --line: #e4d9cc;
-        --accent: #8f4e32;
-        --accent-soft: #f3e4d6;
-        --wash: #ecd8c6;
+        --bg: #eef3f2;
+        --surface: #f8fbfa;
+        --fg: #121816;
+        --muted: #5c6b67;
+        --line: #d3e0dc;
+        --accent: #0f6e62;
+        --accent-soft: #d7efe9;
+        --wash: #cfe6e0;
         color-scheme: light;
       }
       html[data-theme="dark"] {
-        --bg: #12100e;
-        --surface: #1c1916;
-        --fg: #f4efe6;
-        --muted: #a79d92;
-        --line: #322c27;
-        --accent: #e2a56c;
-        --accent-soft: #2c241c;
-        --wash: #3a2a1c;
+        --bg: #0d1211;
+        --surface: #161d1b;
+        --fg: #e7f1ee;
+        --muted: #93a8a2;
+        --line: #273330;
+        --accent: #6dcec0;
+        --accent-soft: #16302c;
+        --wash: #14302b;
         color-scheme: dark;
       }
       * { box-sizing: border-box; }
@@ -99,7 +99,7 @@
         border: 1px solid var(--line);
         background: var(--surface);
         color: var(--fg);
-        box-shadow: 0 1px 2px rgb(28 24 20 / 6%);
+        box-shadow: 0 1px 2px rgb(18 24 22 / 6%);
         transition: transform 200ms ease-out, border-color 200ms ease-out, color 200ms ease-out;
       }
       .icon-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
@@ -181,13 +181,13 @@
         padding: 0.75rem 0.875rem;
         text-decoration: none;
         color: inherit;
-        box-shadow: 0 1px 2px rgb(28 24 20 / 5%);
+        box-shadow: 0 1px 2px rgb(18 24 22 / 5%);
         transition: transform 200ms ease-out, border-color 200ms ease-out, box-shadow 200ms ease-out;
       }
       .card:hover {
         transform: translateY(-2px);
         border-color: var(--accent);
-        box-shadow: 0 8px 20px -12px rgb(143 78 50 / 55%);
+        box-shadow: 0 8px 20px -12px rgb(15 110 98 / 45%);
       }
       .card:active { transform: scale(0.96); }
       .mark {
@@ -275,7 +275,7 @@
             <span class="fallback">YJ</span>
           </span>
           <h1>Yisheng Jiang</h1>
-          <p class="handle">@yishengjiang99 · GrepAwk · Palo Alto</p>
+          <p class="handle">@yishengjiang99 · GrepAwk</p>
           <p class="bio">Browser tools for video, photo, audio, and graphics. FFmpeg, WASM, and canvas.</p>
         </header>
 
@@ -357,7 +357,7 @@
         document.documentElement.dataset.theme = next;
         try { localStorage.setItem("theme", next); } catch (e) {}
         var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute("content", next === "dark" ? "#12100e" : "#f4efe6");
+        if (meta) meta.setAttribute("content", next === "dark" ? "#0d1211" : "#eef3f2");
       }
     </script>
   </body>
