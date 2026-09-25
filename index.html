@@ -1,13 +1,352 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>hello-world</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yisheng Jiang</title>
+    <meta
+      name="description"
+      content="Yisheng Jiang — browser tools for video, audio, and graphics. GrepAwk, Palo Alto."
+    />
+    <meta name="theme-color" content="#f4efe6" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,640&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var s = localStorage.getItem("theme");
+          var t =
+            s === "light" || s === "dark"
+              ? s
+              : matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          document.documentElement.dataset.theme = t;
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute("content", t === "dark" ? "#12100e" : "#f4efe6");
+        } catch (e) {}
+      })();
+    </script>
+    <style>
+      :root {
+        --bg: #f4efe6;
+        --surface: #fffdf8;
+        --fg: #1c1814;
+        --muted: #6e655c;
+        --line: #e4d9cc;
+        --accent: #8f4e32;
+        --accent-soft: #f3e4d6;
+        --wash: #ecd8c6;
+        color-scheme: light;
+      }
+      html[data-theme="dark"] {
+        --bg: #12100e;
+        --surface: #1c1916;
+        --fg: #f4efe6;
+        --muted: #a79d92;
+        --line: #322c27;
+        --accent: #e2a56c;
+        --accent-soft: #2c241c;
+        --wash: #3a2a1c;
+        color-scheme: dark;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+      body {
+        min-height: 100dvh;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+      }
+      button, a { cursor: pointer; }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+      .stage {
+        display: flex;
+        min-height: 100dvh;
+        justify-content: center;
+        padding: 1.5rem 1rem 2rem;
+        background-image: radial-gradient(120% 55% at 50% -12%, var(--wash), transparent 58%);
+      }
+      .sheet {
+        display: flex;
+        width: 100%;
+        max-width: 28rem;
+        flex-direction: column;
+      }
+      .top {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 0.5rem;
+      }
+      .icon-btn {
+        display: grid;
+        width: 2.75rem;
+        height: 2.75rem;
+        place-items: center;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--fg);
+        box-shadow: 0 1px 2px rgb(28 24 20 / 6%);
+        transition: transform 200ms ease-out, border-color 200ms ease-out, color 200ms ease-out;
+      }
+      .icon-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+      .icon-btn:active { transform: scale(0.96); }
+      .theme-btn:hover { transform: none; color: var(--fg); }
+      .icon-swap { position: relative; width: 1.25rem; height: 1.25rem; }
+      .icon-swap > span {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1), transform 200ms cubic-bezier(0.2, 0, 0, 1), filter 200ms cubic-bezier(0.2, 0, 0, 1);
+      }
+      html:not([data-theme="dark"]) .icon-moon,
+      html[data-theme="dark"] .icon-sun {
+        opacity: 0;
+        transform: scale(0.25);
+        filter: blur(4px);
+      }
+      header { display: flex; flex-direction: column; align-items: center; text-align: center; }
+      .avatar-ring {
+        border-radius: 999px;
+        background: var(--bg);
+        padding: 4px;
+        box-shadow: 0 0 0 1px var(--line);
+      }
+      .avatar, .fallback {
+        width: 7rem;
+        height: 7rem;
+        border-radius: 999px;
+        display: block;
+        object-fit: cover;
+      }
+      .fallback {
+        display: none;
+        place-items: center;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1.875rem;
+      }
+      h1 {
+        margin: 1.25rem 0 0;
+        font-family: Fraunces, Georgia, serif;
+        font-size: 2.25rem;
+        font-weight: 560;
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+      .handle { margin: 0.5rem 0 0; font-size: 0.875rem; color: var(--muted); }
+      .bio {
+        margin: 1rem 0 0;
+        max-width: 20rem;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .org { margin: 0.25rem 0 0; font-size: 0.875rem; color: var(--muted); }
+      .social {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+      }
+      .links {
+        list-style: none;
+        margin: 2rem 0 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .card {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-radius: 1rem;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        padding: 0.75rem 0.875rem;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: 0 1px 2px rgb(28 24 20 / 5%);
+        transition: transform 200ms ease-out, border-color 200ms ease-out, box-shadow 200ms ease-out;
+      }
+      .card:hover {
+        transform: translateY(-2px);
+        border-color: var(--accent);
+        box-shadow: 0 8px 20px -12px rgb(143 78 50 / 55%);
+      }
+      .card:active { transform: scale(0.96); }
+      .mark {
+        display: grid;
+        width: 2.75rem;
+        height: 2.75rem;
+        flex: none;
+        place-items: center;
+        border-radius: 0.75rem;
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+      .copy { min-width: 0; flex: 1; text-align: left; }
+      .copy strong { display: block; font-weight: 500; font-size: 1rem; }
+      .copy span {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+      .arrow {
+        flex: none;
+        color: var(--muted);
+        transition: transform 200ms ease-out, color 200ms ease-out;
+      }
+      .card:hover .arrow { color: var(--accent); transform: translate(2px, -2px); }
+      footer {
+        margin-top: auto;
+        padding: 2.5rem 0 0.5rem;
+        text-align: center;
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+      svg { width: 1.25rem; height: 1.25rem; }
+      .arrow svg { width: 1rem; height: 1rem; }
+      @media (prefers-reduced-motion: no-preference) {
+        .rise { animation: rise 480ms cubic-bezier(0.2, 0, 0, 1) both; }
+        .d1 { animation-delay: 40ms; }
+        .d2 { animation-delay: 110ms; }
+        .d3 { animation-delay: 180ms; }
+        .d4 { animation-delay: 250ms; }
+      }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: none; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .icon-swap > span, .card, .icon-btn, .arrow { transition: none; }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <main class="stage">
+      <div class="sheet">
+        <div class="top">
+          <button type="button" class="icon-btn theme-btn" aria-label="Toggle color theme" onclick="toggleTheme()">
+            <span class="icon-swap">
+              <span class="icon-sun">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+                </svg>
+              </span>
+              <span class="icon-moon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </svg>
+              </span>
+            </span>
+          </button>
+        </div>
+
+        <header class="rise d1">
+          <span class="avatar-ring">
+            <img
+              class="avatar"
+              src="https://avatars.githubusercontent.com/u/2591536?v=4"
+              alt="Yisheng Jiang"
+              width="112"
+              height="112"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+            />
+            <span class="fallback">YJ</span>
+          </span>
+          <h1>Yisheng Jiang</h1>
+          <p class="handle">@yishengjiang99 · Palo Alto</p>
+          <p class="bio">Browser tools for video, audio, and graphics. FFmpeg, WASM, and canvas.</p>
+          <p class="org">GrepAwk</p>
+        </header>
+
+        <nav class="social rise d2" aria-label="Social">
+          <a class="icon-btn" href="https://github.com/yishengjiang99" target="_blank" rel="me noopener noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
+          </a>
+          <a class="icon-btn" href="https://x.com/YishengJiang" target="_blank" rel="me noopener noreferrer" aria-label="X">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.7 10.3 22.4 1.5h-1.8l-6.7 7.6L8.6 1.5H1.8l8.1 11.5L1.8 22.5h1.8l7.1-8.1 5.7 8.1h6.8l-8.5-12.2Zm-2.5 2.8-.8-1.2-6.6-9.2h2.8l5.3 7.4.8 1.2 6.9 9.6h-2.8l-5.6-7.8Z"/></svg>
+          </a>
+          <a class="icon-btn" href="https://www.linkedin.com/in/yishengjiang" target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 9H3.7v11.2h2.8V9ZM5.1 3.8A1.7 1.7 0 1 0 5.1 7a1.7 1.7 0 0 0 0-3.2ZM20.3 20.2h-2.8v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.6H10.8V9h2.7v1.5h.1c.4-.7 1.3-1.8 2.8-1.8 3 0 3.6 2 3.6 4.5v7Z"/></svg>
+          </a>
+        </nav>
+
+        <ul class="links rise d3">
+          <li>
+            <a class="card" href="https://grepawk.com" target="_blank" rel="noopener noreferrer">
+              <span class="mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M7 3v18M3 7.5h4M3 12h18M3 16.5h4M17 3v18M17 7.5h4M17 16.5h4"></path></svg>
+              </span>
+              <span class="copy"><strong>GrepAwk</strong><span>FFmpeg and Grok video editor</span></span>
+              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
+            </a>
+          </li>
+          <li>
+            <a class="card" href="https://yishengjiang99.github.io/sf2rend" target="_blank" rel="noopener noreferrer">
+              <span class="mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+              </span>
+              <span class="copy"><strong>SoundFont player</strong><span>MIDI, live in the browser</span></span>
+              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
+            </a>
+          </li>
+          <li>
+            <a class="card" href="https://github.com/yishengjiang99/finalcut" target="_blank" rel="noopener noreferrer">
+              <span class="mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><path d="M8.12 8.12 12 12"></path><path d="M20 4 8.12 15.88"></path><circle cx="6" cy="18" r="3"></circle><path d="M14.8 14.8 20 20"></path></svg>
+              </span>
+              <span class="copy"><strong>finalcut</strong><span>Source for the video editor</span></span>
+              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
+            </a>
+          </li>
+          <li>
+            <a class="card" href="https://github.com/yishengjiang99/gbk" target="_blank" rel="noopener noreferrer">
+              <span class="mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"></rect><rect width="6" height="6" x="9" y="9" rx="1"></rect><path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"></path></svg>
+              </span>
+              <span class="copy"><strong>gbk</strong><span>WASM soundfont player</span></span>
+              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
+            </a>
+          </li>
+          <li>
+            <a class="card" href="https://github.com/yishengjiang99/mkchart" target="_blank" rel="noopener noreferrer">
+              <span class="mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+              </span>
+              <span class="copy"><strong>mkchart</strong><span>Canvas waveforms at 60fps</span></span>
+              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
+            </a>
+          </li>
+        </ul>
+
+        <footer class="rise d4">On GitHub since 2012</footer>
+      </div>
+    </main>
+    <script>
+      function toggleTheme() {
+        var next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", next === "dark" ? "#12100e" : "#f4efe6");
+      }
+    </script>
   </body>
 </html>
