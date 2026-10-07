@@ -434,6 +434,7 @@
               <li><a href="#music-reader">AI Camera — Music Reader</a></li>
               <li><a href="#finalcut">FinalCut / FinalCap</a></li>
               <li><a href="#music-radar">AI Music Radar</a></li>
+              <li><a href="#gbk">gbk — SF2 + MIDI Explorer</a></li>
               <li><a href="#libraries">Shared libraries</a></li>
               <li><a href="#earlier">Earlier browser experiments</a></li>
               <li><a href="#seal">Seal of the High Priestess</a></li>
@@ -588,11 +589,55 @@
 
           <hr class="rule" />
 
+          <article id="gbk">
+            <h2>gbk — SF2 + MIDI Explorer</h2>
+            <span class="status">Live in the browser · open source</span>
+            <p>
+              gbk is a SoundFont&nbsp;2 synthesizer and MIDI player that runs entirely in the
+              browser; the live page calls itself SF2 Explorer and wears a Winamp skin. Load a
+              MIDI file and it plays through GeneralUser&nbsp;GS with a live oscilloscope, a piano
+              roll, and a per-track mixer for volume, expression, pan, mute, and solo. A second
+              tab opens the SoundFont itself, so you can browse its presets and audition the raw
+              PCM samples. A Web MIDI controller can play it live, and any song can be exported
+              as a WAV.
+            </p>
+            <p>
+              The interesting part is how little of it touches the main thread. The SoundFont
+              parser and the synth are hand-written in TypeScript, and the synth runs inside an
+              AudioWorklet: looped sample playback, volume and modulation envelopes, vibrato and
+              modulation LFOs, a modulated low-pass filter, and voice stealing that drops the
+              quietest voice when polyphony runs out. MIDI parsing and scheduling live in a Web
+              Worker that owns the playback clock. Each track gets its own worklet node, and the
+              worker talks to those nodes directly over transferred MessagePorts, so note events
+              never wait on React rendering.
+            </p>
+            <p>
+              After the tracks are mixed, a master stage applies a soft-knee RMS compressor and a
+              stereo-linked lookahead limiter with 5&nbsp;ms of latency. WAV export skips the
+              real-time path entirely: it renders the same synth engine offline from
+              frame-stamped events, masters the mix, and encodes it in chunks. The renderer is
+              also the reference for <a href="#libraries">sf2player-swift</a>, the Swift port
+              that plays back scores in Music Reader and AI Music Radar.
+            </p>
+            <div class="shots" aria-label="gbk SF2 + MIDI Explorer screenshots">
+              <a href="/img/gbk/player.webp" target="_blank" rel="noopener"><img src="/img/gbk/player.webp" alt="gbk’s Winamp-skinned player playing a Beethoven MIDI file, with a live oscilloscope and the playlist below" width="729" height="800" loading="lazy" decoding="async" /></a>
+              <a href="/img/gbk/piano-roll.webp" target="_blank" rel="noopener"><img src="/img/gbk/piano-roll.webp" alt="gbk piano roll view showing the notes of every track scrolling past the playhead during playback" width="729" height="800" loading="lazy" decoding="async" /></a>
+            </div>
+            <div class="links">
+              <ul>
+                <li><a href="https://yishengjiang99.github.io/gbk/" target="_blank" rel="noopener noreferrer">Live — yishengjiang99.github.io/gbk</a></li>
+                <li><a href="https://github.com/yishengjiang99/gbk" target="_blank" rel="noopener noreferrer">GitHub — gbk</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <hr class="rule" />
+
           <article id="libraries" class="also">
             <h2>Shared libraries</h2>
             <p>
               <a href="https://github.com/yishengjiang99/sf2player-swift" target="_blank" rel="noopener noreferrer">sf2player-swift</a>
-              is the shared SoundFont&nbsp;2 rendering engine (Swift port of the gbk renderer)
+              is the shared SoundFont&nbsp;2 rendering engine (Swift port of the <a href="#gbk">gbk</a> renderer)
               consumed by Music Reader and Music Radar. Keeping the synth as its own AGPL
               package means both apps pin a revision and stay out of each other’s player UI.
             </p>
@@ -605,7 +650,6 @@
             <p>
               Before the iOS products, a lot of GrepAwk work lived as WASM demos: a
               <a href="https://yishengjiang99.github.io/sf2rend" target="_blank" rel="noopener noreferrer">browser SoundFont player</a>,
-              <a href="https://yishengjiang99.github.io/gbk/" target="_blank" rel="noopener noreferrer">SF2 Explorer</a>,
               an
               <a href="https://yishengjiang99.github.io/algorithmic-invention/" target="_blank" rel="noopener noreferrer">algorithmic two-part invention</a>,
               <a href="https://yishengjiang99.github.io/fft-64bit/" target="_blank" rel="noopener noreferrer">FFT spectrum</a>
