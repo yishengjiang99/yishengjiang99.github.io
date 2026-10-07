@@ -437,7 +437,6 @@
               <li><a href="#gbk">gbk — SF2 + MIDI Explorer</a></li>
               <li><a href="#libraries">Shared libraries</a></li>
               <li><a href="#earlier">Earlier browser experiments</a></li>
-              <li><a href="#seal">Seal of the High Priestess</a></li>
             </ol>
           </nav>
         </div>
@@ -662,56 +661,6 @@
               <a href="https://yishengjiang99.github.io/mc4/" target="_blank" rel="noopener noreferrer">BrowserCraft</a>.
               They are still up if you want the archaeology.
             </p>
-          </article>
-
-          <hr class="rule" />
-
-          <article id="seal" class="featured">
-            <p class="kicker">Featured</p>
-            <h2>Seal of the High Priestess</h2>
-            <span class="status">Playable in the browser · vertical slice</span>
-            <p>
-              Seal of the High Priestess — <em>A Journey of Purification and Poisoned Words</em> —
-              is a 2D JRPG / visual-novel hybrid that runs from a static page. Its design takes
-              its cue from LinaHua’s solo, AI-assisted epic, in the spirit of Final Fantasy&nbsp;VI
-              crossed with Fate/Stay Night: dialogue first, named gear, and slow, strategic
-              combat. The party is Elara, a priestess; Kael, a sealed demon prince; Lyra, a
-              scout; and Thorn, a bound bruiser. The current slice runs the full intro — temple,
-              village, forest, Heartwood Hollow, the canal city of Meridia — through several
-              thousand words of original visual-novel scenes, and stops at the outer gates of
-              the Throne of Ash.
-            </p>
-            <p>
-              Combat is about tempo, not grinding. Elara spends Mana to Shield, Heal, or Empower;
-              Meditating restores it but costs her turn and leaves her vulnerable. At full Mana
-              she can Break the High Seal: Kael goes berserk for four turns, then Elara is gassed
-              and cannot act for two, and many skills need charge-up turns first or leave you
-              gassed afterward. There is no XP grind and no generic
-              shop: strength comes from named gear and techniques, and Korin the smith reforges
-              what you already carry rather than selling you something better. Story bosses
-              include the Hollow Oak, the Canal Specter, the Gate Warden, the Bound Hound and
-              The Unbetrayed; between them are optional quests, lotus-altar saves, a day/night
-              tint, and a mid-game choice over whether to fully unseal Kael.
-            </p>
-            <p>
-              Technically it is deliberately plain: no engine, no CDN, no build step — a canvas
-              and a small finite-state machine (title, visual novel, map, battle, menu) in vanilla
-              JavaScript. Spoken dialogue uses pre-generated ElevenLabs clips, one voice per
-              character, bundled as static MP3s (369 clips across 57 bundles today), so the
-              browser never calls ElevenLabs. A script names each clip by a SHA-256 hash of its
-              line, voice and settings, so only new or changed lines are regenerated, and a
-              GitHub Actions workflow commits fresh clips back and rebuilds Pages. A Playwright
-              headless suite runs in CI.
-            </p>
-            <div class="shots wide" aria-label="Seal of the High Priestess screenshot">
-              <a href="/img/seal/title-screen.webp" target="_blank" rel="noopener"><img src="/img/seal/title-screen.webp" alt="Seal of the High Priestess title screen with Elara and Kael before a ruined temple gate" width="800" height="500" loading="lazy" decoding="async" /></a>
-            </div>
-            <div class="links">
-              <ul>
-                <li><a href="https://yishengjiang99.github.io/seal-of-the-high-priestess/" target="_blank" rel="noopener noreferrer">Play — yishengjiang99.github.io/seal-of-the-high-priestess</a></li>
-                <li><a href="https://github.com/yishengjiang99/seal-of-the-high-priestess" target="_blank" rel="noopener noreferrer">GitHub — seal-of-the-high-priestess</a></li>
-              </ul>
-            </div>
           </article>
         </div>
 
