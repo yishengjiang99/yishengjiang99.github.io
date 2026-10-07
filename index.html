@@ -6,13 +6,13 @@
     <title>Yisheng Jiang</title>
     <meta
       name="description"
-      content="Yisheng Jiang — browser tools for video, photo, audio, and graphics. GrepAwk."
+      content="Yisheng Jiang — iOS and web tools for cameras, sheet music, and video. On-device ML, FFmpeg, and SoundFonts."
     />
     <meta name="theme-color" content="#eef3f2" />
     <meta property="og:title" content="Yisheng Jiang" />
     <meta
       property="og:description"
-      content="Yisheng Jiang — browser tools for video, photo, audio, and graphics. GrepAwk."
+      content="Yisheng Jiang — iOS and web tools for cameras, sheet music, and video. On-device ML, FFmpeg, and SoundFonts."
     />
     <meta property="og:image" content="https://yishengjiang99.github.io/og.jpg" />
     <meta property="og:url" content="https://yishengjiang99.github.io/" />
@@ -20,7 +20,7 @@
     <meta name="twitter:title" content="Yisheng Jiang" />
     <meta
       name="twitter:description"
-      content="Yisheng Jiang — browser tools for video, photo, audio, and graphics. GrepAwk."
+      content="Yisheng Jiang — iOS and web tools for cameras, sheet music, and video. On-device ML, FFmpeg, and SoundFonts."
     />
     <meta name="twitter:image" content="https://yishengjiang99.github.io/og.jpg" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -76,33 +76,38 @@
         background: var(--bg);
         color: var(--fg);
         font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+        line-height: 1.65;
+        font-size: 1.0625rem;
       }
       button, a { cursor: pointer; }
       :focus-visible {
         outline: 2px solid var(--accent);
         outline-offset: 3px;
       }
+      a {
+        color: var(--accent);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.18em;
+      }
+      a:hover { text-decoration-thickness: 2px; }
       .stage {
         display: flex;
         min-height: 100dvh;
-        align-items: flex-start;
         justify-content: center;
-        padding: 1.5rem 1rem 2rem;
+        padding: 1.5rem 1.15rem 3.5rem;
         background-image: radial-gradient(120% 55% at 50% -12%, var(--wash), transparent 58%);
       }
-      @media (min-width: 640px) {
-        .stage { align-items: flex-start; padding: 2.5rem 1.5rem; }
+      @media (min-width: 720px) {
+        .stage { padding: 2.75rem 1.5rem 4.5rem; }
       }
       .sheet {
-        display: flex;
         width: 100%;
-        max-width: 28rem;
-        flex-direction: column;
+        max-width: 40rem;
       }
       .top {
         display: flex;
         justify-content: flex-end;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
       }
       .icon-btn {
         display: grid;
@@ -114,11 +119,10 @@
         background: var(--surface);
         color: var(--fg);
         box-shadow: 0 1px 2px rgb(18 24 22 / 6%);
-        transition: transform 200ms ease-out, border-color 200ms ease-out, color 200ms ease-out;
+        transition: border-color 200ms ease-out, color 200ms ease-out;
       }
-      .icon-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+      .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
       .icon-btn:active { transform: scale(0.96); }
-      .theme-btn:hover { transform: none; color: var(--fg); }
       .icon-swap { position: relative; width: 1.25rem; height: 1.25rem; }
       .icon-swap > span {
         position: absolute;
@@ -133,16 +137,28 @@
         transform: scale(0.25);
         filter: blur(4px);
       }
-      header { display: flex; flex-direction: column; align-items: center; text-align: center; }
+      header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 0.5rem;
+      }
+      .avatar-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.35rem;
+      }
       .avatar-ring {
         border-radius: 999px;
         background: var(--bg);
-        padding: 4px;
+        padding: 3px;
         box-shadow: 0 0 0 1px var(--line);
+        flex: none;
       }
       .avatar, .fallback {
-        width: 7rem;
-        height: 7rem;
+        width: 4.5rem;
+        height: 4.5rem;
         border-radius: 999px;
         display: block;
         object-fit: cover;
@@ -153,105 +169,129 @@
         background: var(--accent-soft);
         color: var(--accent);
         font-family: Fraunces, Georgia, serif;
-        font-size: 1.875rem;
+        font-size: 1.35rem;
       }
-      h1 {
-        margin: 1.25rem 0 0;
+      .identity h1 {
+        margin: 0;
         font-family: Fraunces, Georgia, serif;
-        font-size: 2.25rem;
+        font-size: clamp(1.85rem, 5vw, 2.35rem);
         font-weight: 560;
-        line-height: 1;
+        line-height: 1.05;
         letter-spacing: -0.02em;
       }
-      .handle { margin: 0.5rem 0 0; font-size: 0.875rem; color: var(--muted); }
-      .bio {
-        margin: 1rem 0 0;
-        max-width: 20rem;
-        font-size: 1rem;
-        line-height: 1.6;
+      .handle {
+        margin: 0.35rem 0 0;
+        font-size: 0.9rem;
+        color: var(--muted);
       }
-      .org { margin: 0.25rem 0 0; font-size: 0.875rem; color: var(--muted); }
       .social {
         display: flex;
-        justify-content: center;
-        gap: 0.75rem;
-        margin-top: 1.25rem;
+        gap: 0.65rem;
+        margin-top: 1.1rem;
+      }
+      .lede, article p {
+        margin: 0 0 1.05rem;
+        color: var(--fg);
+        max-width: 38rem;
+      }
+      .lede {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        color: var(--fg);
+      }
+      .lede:last-child { margin-bottom: 0; }
+      .toc {
+        margin: 1.75rem 0 0;
+        padding: 1rem 1.1rem;
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        background: var(--surface);
+        font-size: 0.95rem;
+      }
+      .toc strong {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 0.45rem;
+      }
+      .toc ol {
+        margin: 0;
+        padding-left: 1.2rem;
+        color: var(--muted);
+      }
+      .toc li { margin: 0.2rem 0; }
+      .toc a { color: var(--fg); text-decoration: none; }
+      .toc a:hover { color: var(--accent); text-decoration: underline; }
+      hr.rule {
+        border: 0;
+        border-top: 1px solid var(--line);
+        margin: 2.4rem 0;
+      }
+      article {
+        scroll-margin-top: 1.5rem;
+      }
+      article h2 {
+        margin: 0 0 0.85rem;
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1.55rem;
+        font-weight: 560;
+        letter-spacing: -0.015em;
+        line-height: 1.2;
+      }
+      .status {
+        display: inline-block;
+        margin: 0 0 1rem;
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.01em;
       }
       .links {
+        margin: 1.15rem 0 0;
+        padding: 0.85rem 1rem;
+        border-left: 3px solid var(--accent);
+        background: color-mix(in srgb, var(--accent-soft) 55%, transparent);
+        border-radius: 0 0.75rem 0.75rem 0;
+        font-size: 0.95rem;
+      }
+      .links ul {
         list-style: none;
-        margin: 2rem 0 0;
+        margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 0.35rem;
       }
-      .card {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        border-radius: 1rem;
-        border: 1px solid var(--line);
-        background: var(--surface);
-        padding: 0.75rem 0.875rem;
-        text-decoration: none;
-        color: inherit;
-        box-shadow: 0 1px 2px rgb(18 24 22 / 5%);
-        transition: transform 200ms ease-out, border-color 200ms ease-out, box-shadow 200ms ease-out;
+      .also h2 {
+        margin: 0 0 0.75rem;
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1.35rem;
+        font-weight: 560;
       }
-      .card:hover {
-        transform: translateY(-2px);
-        border-color: var(--accent);
-        box-shadow: 0 8px 20px -12px rgb(15 110 98 / 45%);
-      }
-      .card:active { transform: scale(0.96); }
-      .mark {
-        display: grid;
-        width: 2.75rem;
-        height: 2.75rem;
-        flex: none;
-        place-items: center;
-        border-radius: 0.75rem;
-        background: var(--accent-soft);
-        color: var(--accent);
-      }
-      .copy { min-width: 0; flex: 1; text-align: left; }
-      .copy strong { display: block; font-weight: 500; font-size: 1rem; }
-      .copy span {
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-size: 0.875rem;
-        color: var(--muted);
-      }
-      .arrow {
-        flex: none;
-        color: var(--muted);
-        transition: transform 200ms ease-out, color 200ms ease-out;
-      }
-      .card:hover .arrow { color: var(--accent); transform: translate(2px, -2px); }
+      .also p { color: var(--muted); font-size: 0.98rem; }
       footer {
-        margin-top: auto;
-        padding: 2.5rem 0 0.5rem;
-        text-align: center;
+        margin-top: 2.75rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--line);
+        text-align: left;
         font-size: 0.875rem;
         color: var(--muted);
       }
       svg { width: 1.25rem; height: 1.25rem; }
-      .arrow svg { width: 1rem; height: 1rem; }
       @media (prefers-reduced-motion: no-preference) {
         .rise { animation: rise 480ms cubic-bezier(0.2, 0, 0, 1) both; }
         .d1 { animation-delay: 40ms; }
         .d2 { animation-delay: 110ms; }
         .d3 { animation-delay: 180ms; }
-        .d4 { animation-delay: 250ms; }
       }
       @keyframes rise {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: none; }
       }
       @media (prefers-reduced-motion: reduce) {
-        .icon-swap > span, .card, .icon-btn, .arrow { transition: none; }
+        .icon-swap > span, .icon-btn { transition: none; }
       }
     </style>
   </head>
@@ -277,136 +317,229 @@
         </div>
 
         <header class="rise d1">
-          <span class="avatar-ring">
-            <img
-              class="avatar"
-              src="https://avatars.githubusercontent.com/u/2591536?v=4"
-              alt="Yisheng Jiang"
-              width="112"
-              height="112"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-            />
-            <span class="fallback">YJ</span>
-          </span>
-          <h1>Yisheng Jiang</h1>
-          <p class="handle">@yishengjiang99 · GrepAwk</p>
-          <p class="bio">Browser tools for video, photo, audio, and graphics. FFmpeg, WASM, and canvas.</p>
+          <div class="avatar-row">
+            <span class="avatar-ring">
+              <img
+                class="avatar"
+                src="https://avatars.githubusercontent.com/u/2591536?v=4"
+                alt="Yisheng Jiang"
+                width="72"
+                height="72"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+              />
+              <span class="fallback">YJ</span>
+            </span>
+            <div class="identity">
+              <h1>Yisheng Jiang</h1>
+              <p class="handle">@yishengjiang99 · GrepAwk · Palo Alto</p>
+            </div>
+          </div>
+          <nav class="social" aria-label="Social">
+            <a class="icon-btn" href="https://github.com/yishengjiang99" target="_blank" rel="me noopener noreferrer" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
+            </a>
+            <a class="icon-btn" href="https://x.com/YishengJiang" target="_blank" rel="me noopener noreferrer" aria-label="X">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.7 10.3 22.4 1.5h-1.8l-6.7 7.6L8.6 1.5H1.8l8.1 11.5L1.8 22.5h1.8l7.1-8.1 5.7 8.1h6.8l-8.5-12.2Zm-2.5 2.8-.8-1.2-6.6-9.2h2.8l5.3 7.4.8 1.2 6.9 9.6h-2.8l-5.6-7.8Z"/></svg>
+            </a>
+            <a class="icon-btn" href="https://www.linkedin.com/in/yishengjiang" target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 9H3.7v11.2h2.8V9ZM5.1 3.8A1.7 1.7 0 1 0 5.1 7a1.7 1.7 0 0 0 0-3.2ZM20.3 20.2h-2.8v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.6H10.8V9h2.7v1.5h.1c.4-.7 1.3-1.8 2.8-1.8 3 0 3.6 2 3.6 4.5v7Z"/></svg>
+            </a>
+          </nav>
         </header>
 
-        <nav class="social rise d2" aria-label="Social">
-          <a class="icon-btn" href="https://github.com/yishengjiang99" target="_blank" rel="me noopener noreferrer" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.81 0 .27.18.6.69.49A10.04 10.04 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
-          </a>
-          <a class="icon-btn" href="https://x.com/YishengJiang" target="_blank" rel="me noopener noreferrer" aria-label="X">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.7 10.3 22.4 1.5h-1.8l-6.7 7.6L8.6 1.5H1.8l8.1 11.5L1.8 22.5h1.8l7.1-8.1 5.7 8.1h6.8l-8.5-12.2Zm-2.5 2.8-.8-1.2-6.6-9.2h2.8l5.3 7.4.8 1.2 6.9 9.6h-2.8l-5.6-7.8Z"/></svg>
-          </a>
-          <a class="icon-btn" href="https://www.linkedin.com/in/yishengjiang" target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 9H3.7v11.2h2.8V9ZM5.1 3.8A1.7 1.7 0 1 0 5.1 7a1.7 1.7 0 0 0 0-3.2ZM20.3 20.2h-2.8v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.6H10.8V9h2.7v1.5h.1c.4-.7 1.3-1.8 2.8-1.8 3 0 3.6 2 3.6 4.5v7Z"/></svg>
-          </a>
-        </nav>
+        <div class="rise d2">
+          <p class="lede">
+            I build camera-first iOS apps and browser tools that turn media into something you can
+            act on: set the shot, read a page of music, hear a performance, or edit video with
+            natural language. Most of the interesting work sits on the phone — Core&nbsp;ML,
+            AVFoundation, on-device speech — with FFmpeg, WASM, and SoundFonts when the web is
+            the right surface.
+          </p>
+          <p class="lede">
+            Below are the projects I have been shipping recently, written out as short essays
+            rather than a link dump. Status notes are current as of late&nbsp;2026.
+          </p>
 
-        <ul class="links rise d3">
-          <li>
-            <a class="card" href="https://grepawk.com" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M7 3v18M3 7.5h4M3 12h18M3 16.5h4M17 3v18M17 7.5h4M17 16.5h4"></path></svg></span>
-              <span class="copy"><strong>GrepAwk</strong><span>FFmpeg and Grok video editor</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://photo.grepawk.com" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg></span>
-              <span class="copy"><strong>Photo Recipes</strong><span>Auto Optimize shutter, ISO, and focus</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://yishengjiang99.github.io/sf2rend" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg></span>
-              <span class="copy"><strong>SoundFont player</strong><span>MIDI, live in the browser</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://yishengjiang99.github.io/gbk/" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path></svg></span>
-              <span class="copy"><strong>SF2 Explorer</strong><span>WASM soundfont player</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://yishengjiang99.github.io/nco/" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path></svg></span>
-              <span class="copy"><strong>Wavetable oscillators</strong><span>Vectior Audio</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://yishengjiang99.github.io/algorithmic-invention/" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18.5 8c0-1.4.5-2 1.5-2"></path><path d="M3 8v8a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4V8"></path><path d="M3 10h18"></path><path d="M8 10v4"></path><path d="M12 10v4"></path><path d="M16 10v4"></path></svg></span>
-              <span class="copy"><strong>Algorithmic Invention</strong><span>Two-part invention, played in WASM</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://yishengjiang99.github.io/fft-64bit/" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></span>
-              <span class="copy"><strong>FFT Spectrum</strong><span>fft.c, compiled for the browser</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://yishengjiang99.github.io/ff32bit/" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg></span>
-              <span class="copy"><strong>FF32Bit</strong><span>Zero-copy audio player</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://yishengjiang99.github.io/motion-camera/" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m14.31 8 5.74 9.94"></path><path d="M9.69 8h11.48"></path><path d="m7.38 12 5.74-9.94"></path><path d="M9.69 16 3.95 6.06"></path><path d="M14.31 16H2.83"></path><path d="m16.62 12-5.74 9.94"></path></svg></span>
-              <span class="copy"><strong>Motion camera</strong><span>WASM motion detector</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://yishengjiang99.github.io/mc4/" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg></span>
-              <span class="copy"><strong>BrowserCraft</strong><span>Minecraft in JavaScript</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://yishengjiang99.github.io/audio-cue-detector/" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.9 2.1 11.5 7l4.9 1.6-4.9 1.6L9.9 15.1 8.3 10.2 3.4 8.6 8.3 7Z"></path><path d="M18 13.5 18.8 16l2.5.8-2.5.8-.8 2.5-.8-2.5-2.5-.8 2.5-.8Z"></path></svg></span>
-              <span class="copy"><strong>Solo Shuffle coach</strong><span>Audio cues for the arena</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://yishengjiang99.github.io/seal-of-the-high-priestess/" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5 3 6V3h3l11.5 11.5"></path><path d="M13 19l6-6"></path><path d="m16 16 4 4"></path><path d="m19 21-1.5-1.5"></path></svg></span>
-              <span class="copy"><strong>Seal of the High Priestess</strong><span>A 2D journey of purification</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://github.com/yishengjiang99/finalcut" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><path d="M8.12 8.12 12 12"></path><path d="M20 4 8.12 15.88"></path><circle cx="6" cy="18" r="3"></circle><path d="M14.8 14.8 20 20"></path></svg></span>
-              <span class="copy"><strong>finalcut</strong><span>Source for the video editor</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="card" href="https://github.com/yishengjiang99/mkchart" target="_blank" rel="noopener noreferrer">
-              <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="m19 9-5 5-4-4-3 3"></path></svg></span>
-              <span class="copy"><strong>mkchart</strong><span>Canvas waveforms at 60fps</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"></path></svg></span>
-            </a>
-          </li>
-        </ul>
+          <nav class="toc" aria-label="On this page">
+            <strong>On this page</strong>
+            <ol>
+              <li><a href="#protune">ProTune AI Camera</a></li>
+              <li><a href="#music-reader">AI Camera — Music Reader</a></li>
+              <li><a href="#finalcut">FinalCut / FinalCap</a></li>
+              <li><a href="#music-radar">AI Music Radar</a></li>
+              <li><a href="#libraries">Shared libraries &amp; playbook</a></li>
+              <li><a href="#earlier">Earlier browser experiments</a></li>
+            </ol>
+          </nav>
+        </div>
 
-        <footer class="rise d4">On GitHub since 2012</footer>
+        <hr class="rule" />
+
+        <div class="rise d3">
+          <article id="protune">
+            <h2>ProTune AI Camera</h2>
+            <span class="status">App Store live · 1.1+ · 1.2 in review</span>
+            <p>
+              ProTune (shipping name <em>ProTune AI Camera</em>; also listed historically as
+              AI Camera&nbsp;— Auto Recipes) is a viewfinder-first iPhone camera. The home screen
+              is the live preview, not a gallery of filters. You point at a scene, tap Auto
+              Optimize, and the app writes real capture dials — shutter, ISO, EV, white balance,
+              focus, and zoom — instead of painting beauty looks onto a JPEG after the fact.
+            </p>
+            <p>
+              The product problem is familiar to anyone who has collected “photo recipes” from
+              blogs and still ended up guessing dial positions on a phone. ProTune bundles a
+              small catalog of field recipes, then uses a fast on-device pass plus an optional
+              cloud refine to pick and apply the right one. Teach Mode explains which recipe
+              won and why the dials moved. Pro unlocks unlimited Auto Optimize, manual A/S/M
+              dials, and full teach sheets through StoreKit subscriptions; Free Peek keeps the
+              viewfinder and a daily optimize quota.
+            </p>
+            <p>
+              Under the hood the interesting bits are the AVFoundation session that actually
+              accepts those phone targets, on-device speech for voice notes into the same
+              recommend loop, IAP entitlement plumbing, and Meta + SKAdNetwork attribution for
+              the ads path. Bundle id <code>com.ragnus.mvp</code>. Companion marketing site at
+              photo.grepawk.com.
+            </p>
+            <div class="links">
+              <ul>
+                <li><a href="https://apps.apple.com/us/app/protune-ai-camera/id6813991381" target="_blank" rel="noopener noreferrer">App Store — ProTune AI Camera</a></li>
+                <li><a href="https://photo.grepawk.com" target="_blank" rel="noopener noreferrer">Web companion — photo.grepawk.com</a></li>
+                <li><a href="https://github.com/yishengjiang99/photo-recipes" target="_blank" rel="noopener noreferrer">GitHub — photo-recipes</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <hr class="rule" />
+
+          <article id="music-reader">
+            <h2>AI Camera — Music Reader</h2>
+            <span class="status">TestFlight / App Store path · not publicly listed yet</span>
+            <p>
+              Music Reader (home-screen name SheetCam) answers a different camera question:
+              point at engraved Western sheet music and hear the page. The app runs optical
+              music recognition entirely on device — SegNet and encoder models via Core&nbsp;ML,
+              decoder on ONNX Runtime CPU — then emits SMF MIDI plus a note layout so the
+              player can highlight what it is sounding.
+            </p>
+            <p>
+              Playback uses an SF2 SoundFont engine with tempo control, A–B loop, hand mute /
+              solo, and a small instrument palette. Every successful scan lands in an on-device
+              library. Free allows a handful of scans per day; Pro unlocks unlimited via
+              subscription. No account, and photos never leave the phone for recognition.
+            </p>
+            <p>
+              The hard engineering is the locked pipeline: optional Vision crop, staff geometry
+              and dewarp, zero-copy ORT I/O binding for the decoder KV-cache, and keeping memory
+              and warmup budgets honest on real devices. Bundle id <code>com.ragnus.vp</code>.
+              The App Store product page is not public yet, so the links below are the source
+              repo and related privacy page only.
+            </p>
+            <div class="links">
+              <ul>
+                <li><a href="https://github.com/yishengjiang99/omr-sheet-cam" target="_blank" rel="noopener noreferrer">GitHub — omr-sheet-cam</a></li>
+                <li><a href="https://grepawk.com/music-reader/privacy.html" target="_blank" rel="noopener noreferrer">Privacy policy</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <hr class="rule" />
+
+          <article id="finalcut">
+            <h2>FinalCut / FinalCap</h2>
+            <span class="status">Web live · iOS port in progress</span>
+            <p>
+              FinalCut is a chat-driven video editor hosted at grepawk.com. You upload clips,
+              talk to an assistant about what you want, and the server runs FFmpeg for the
+              actual transforms — trim, crop, resize, overlays, transitions between clips,
+              color and a long list of audio filters. The point is not another timeline UI; it
+              is “describe the edit, get a render.”
+            </p>
+            <p>
+              The same product thread continues as FinalCap on iOS (bundle family
+              <code>com.ragnus.w2</code>), porting the editing surface closer to the phone.
+              Auth and billing on the web side use Google OAuth and Stripe; the interesting
+              product constraint is keeping FFmpeg jobs reliable while the chat layer stays
+              useful instead of decorative.
+            </p>
+            <div class="links">
+              <ul>
+                <li><a href="https://grepawk.com" target="_blank" rel="noopener noreferrer">Live — grepawk.com</a></li>
+                <li><a href="https://github.com/yishengjiang99/finalcut" target="_blank" rel="noopener noreferrer">GitHub — finalcut</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <hr class="rule" />
+
+          <article id="music-radar">
+            <h2>AI Music Radar</h2>
+            <span class="status">Public repo · web demo live · iOS on TestFlight path</span>
+            <p>
+              EarSheet / AI Music Radar is the sibling of Music Reader. Where SheetCam reads a
+              printed page, Music Radar listens: microphone or imported audio goes through a
+              fine-tuned Spotify Basic Pitch model in Core&nbsp;ML and comes out as an engraved
+              staff, SMF MIDI, and MusicXML. Playback reuses the same SF2 engine. Audio stays
+              on the phone.
+            </p>
+            <p>
+              There is also a browser demo that runs Basic Pitch on WebGPU / WebGL / WASM at
+              grepawk.com/music-hear/. The iOS app identity is locked (bundle
+              <code>com.ragnus.pnge</code>); it is public enough to talk about, still early
+              relative to ProTune on the store.
+            </p>
+            <div class="links">
+              <ul>
+                <li><a href="https://grepawk.com/music-hear/" target="_blank" rel="noopener noreferrer">Web demo — music-hear</a></li>
+                <li><a href="https://github.com/yishengjiang99/earsheet" target="_blank" rel="noopener noreferrer">GitHub — earsheet</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <hr class="rule" />
+
+          <article id="libraries" class="also">
+            <h2>Shared libraries &amp; playbook</h2>
+            <p>
+              <a href="https://github.com/yishengjiang99/sf2player-swift" target="_blank" rel="noopener noreferrer">sf2player-swift</a>
+              is the shared SoundFont&nbsp;2 rendering engine (Swift port of the gbk renderer)
+              consumed by Music Reader and Music Radar. Keeping the synth as its own AGPL
+              package means both apps pin a revision and stay out of each other’s player UI.
+            </p>
+            <p>
+              <a href="https://github.com/yishengjiang99/app-store-playbook" target="_blank" rel="noopener noreferrer">app-store-playbook</a>
+              collects screenshot generation, metadata templates, and submission workflows so
+              listing work for the camera and music apps does not fork into three slightly
+              different scripts every release.
+            </p>
+          </article>
+
+          <hr class="rule" />
+
+          <article id="earlier" class="also">
+            <h2>Earlier browser experiments</h2>
+            <p>
+              Before the iOS products, a lot of GrepAwk work lived as WASM demos: a
+              <a href="https://yishengjiang99.github.io/sf2rend" target="_blank" rel="noopener noreferrer">browser SoundFont player</a>,
+              <a href="https://yishengjiang99.github.io/gbk/" target="_blank" rel="noopener noreferrer">SF2 Explorer</a>,
+              <a href="https://yishengjiang99.github.io/nco/" target="_blank" rel="noopener noreferrer">wavetable oscillators</a>,
+              an
+              <a href="https://yishengjiang99.github.io/algorithmic-invention/" target="_blank" rel="noopener noreferrer">algorithmic two-part invention</a>,
+              <a href="https://yishengjiang99.github.io/fft-64bit/" target="_blank" rel="noopener noreferrer">FFT spectrum</a>
+              and
+              <a href="https://yishengjiang99.github.io/ff32bit/" target="_blank" rel="noopener noreferrer">zero-copy audio</a>,
+              plus
+              <a href="https://yishengjiang99.github.io/motion-camera/" target="_blank" rel="noopener noreferrer">motion camera</a>,
+              <a href="https://yishengjiang99.github.io/mc4/" target="_blank" rel="noopener noreferrer">BrowserCraft</a>,
+              and
+              <a href="https://yishengjiang99.github.io/seal-of-the-high-priestess/" target="_blank" rel="noopener noreferrer">Seal of the High Priestess</a>.
+              They are still up if you want the archaeology.
+            </p>
+          </article>
+        </div>
+
+        <footer>On GitHub since 2012 · Static page, no analytics</footer>
       </div>
     </main>
     <script>
