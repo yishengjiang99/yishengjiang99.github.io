@@ -6,13 +6,13 @@
     <title>Yisheng Jiang — Full-stack agentic AI engineer, edge AI and real-time media</title>
     <meta
       name="description"
-      content="Yisheng Jiang — full-stack agentic AI engineer. Fast, AI-powered camera, audio, and video apps on edge compute and the edge GPU, with LLM tool calls placed on the server, in the browser, or on the iPhone, wherever they run best."
+      content="I build fast, AI-powered camera, audio, and video applications across servers, browsers, and edge devices—including edge GPUs."
     />
     <meta name="theme-color" content="#eef3f2" />
     <meta property="og:title" content="Yisheng Jiang — Full-stack agentic AI engineer, edge AI and real-time media" />
     <meta
       property="og:description"
-      content="Yisheng Jiang — full-stack agentic AI engineer. Fast, AI-powered camera, audio, and video apps on edge compute and the edge GPU, with LLM tool calls placed on the server, in the browser, or on the iPhone, wherever they run best."
+      content="I build fast, AI-powered camera, audio, and video applications across servers, browsers, and edge devices—including edge GPUs."
     />
     <meta property="og:image" content="https://yishengjiang99.github.io/og.jpg" />
     <meta property="og:url" content="https://yishengjiang99.github.io/" />
@@ -20,7 +20,7 @@
     <meta name="twitter:title" content="Yisheng Jiang — Full-stack agentic AI engineer, edge AI and real-time media" />
     <meta
       name="twitter:description"
-      content="Yisheng Jiang — full-stack agentic AI engineer. Fast, AI-powered camera, audio, and video apps on edge compute and the edge GPU, with LLM tool calls placed on the server, in the browser, or on the iPhone, wherever they run best."
+      content="I build fast, AI-powered camera, audio, and video applications across servers, browsers, and edge devices—including edge GPUs."
     />
     <meta name="twitter:image" content="https://yishengjiang99.github.io/og.jpg" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -171,7 +171,7 @@
         font-family: Fraunces, Georgia, serif;
         font-size: 1.35rem;
       }
-      .identity h1 {
+      .identity .name {
         margin: 0;
         font-family: Fraunces, Georgia, serif;
         font-size: clamp(1.85rem, 5vw, 2.35rem);
@@ -243,7 +243,7 @@
         border-top: 1px solid var(--line);
         margin: 2.4rem 0;
       }
-      article {
+      article, #projects {
         scroll-margin-top: 1.5rem;
       }
       article h2 {
@@ -366,7 +366,7 @@
               <span class="fallback">YJ</span>
             </span>
             <div class="identity">
-              <h1>Yisheng Jiang</h1>
+              <p class="name">Yisheng Jiang</p>
               <p class="handle">@yishengjiang99 · GrepAwk · Palo Alto</p>
             </div>
           </div>
@@ -384,52 +384,17 @@
         </header>
 
         <div class="rise d2">
-          <p class="headline">
-            Full-stack agentic AI engineer, putting tool calls wherever they run best.
-          </p>
-          <p class="subhead">
-            Fast, AI-powered apps for the camera, audio, and video, running on edge compute
-            and the edge GPU.
-          </p>
-          <p class="lede">
-            An agent is only as good as the place its tools run. I put each piece of an
-            agentic loop — the model call, the tool, the inference behind it — on the tier that
-            serves it best: the server when a job needs heavy FFmpeg or a frontier model, the
-            browser when the work belongs next to the user’s microphone, the iPhone when
-            latency, privacy, or cost argue for keeping it on the device. The default is local
-            first, with the cloud as a deliberate fallback rather than a reflex.
-          </p>
-          <p class="lede">
-            On the server, FinalCut gives Grok more than forty function-calling tools over
-            FFmpeg. Ask it to “subtitle the song in Chinese” and the lyric-captions tool sends
-            up only the audio track, transcribes it with word timestamps through Whisper, has
-            Grok identify the song, correct misheard lines against the published lyrics, and
-            translate each one, then hands back timed two-line bilingual captions to burn
-            into the video.
-          </p>
-          <p class="lede">
-            On the iPhone, the tools run natively. FinalCap, FinalCut’s iOS sibling, executes
-            twenty-one of the same tool calls on the device with AVFoundation and Core Image,
-            and writes captions with Apple’s on-device speech recognition; a tool with no
-            native version goes to the server only if Cloud processing is switched on, and it
-            is off by default. ProTune AI Camera optimizes on the device first — a Vision pass
-            over the viewfinder, voice notes transcribed on the phone — and calls a Grok tool
-            loop only to refine: the model must list the recipe catalog, inspect candidates,
-            and select one, and its answer lands as shutter, ISO, white balance, focus, and zoom
-            targets set directly on the live camera session. Music Reader reads a photo of
-            sheet music entirely offline, splitting its models between Core&nbsp;ML and ONNX
-            Runtime and keeping the decoder’s KV-cache resident between token steps so nothing
-            is copied through Swift.
-          </p>
-          <p class="lede">
-            In the browser, AI Music Radar’s transcription model runs on WebGPU, falling back
-            to WebGL and then WASM, with the microphone captured in an AudioWorklet; on the
-            iPhone, the same Basic Pitch model runs through Core&nbsp;ML. Real-time budgets tie
-            it all together: the SoundFont synth behind both music apps renders without
-            allocating or taking a lock, and the older browser experiments further down feed
-            AudioWorklets from WebAssembly. The write-ups below go project by project; status
-            notes are current as of late&nbsp;2026.
-          </p>
+          <h1 class="headline">Full-stack agentic AI engineer, putting tool calls wherever they run best.</h1>
+          <p class="subhead">I build fast, AI-powered camera, audio, and video applications across servers, browsers, and edge devices—including edge GPUs.</p>
+          <p class="lede">An agent is only as good as where its tools run. I place each part of the agentic loop—the model call, the tool execution, and the inference behind it—on the compute tier that serves it best. Heavy FFmpeg jobs and frontier models belong on the server. Microphone-adjacent processing belongs in the browser. Latency-sensitive, private, or high-volume inference belongs on the iPhone.</p>
+          <p class="lede">The default is local first, with the cloud as a deliberate fallback rather than a reflex.</p>
+          <p class="lede">On the server, <a href="#finalcut">FinalCut</a> gives Grok more than forty function-calling tools over FFmpeg. Ask it to “subtitle the song in Chinese,” and the lyric-captions tool uploads only the audio track, transcribes it with word-level timestamps through Whisper, asks Grok to identify the song, corrects transcription errors against published lyrics, and translates each line. The result is a set of synchronized, two-line bilingual captions ready to burn into the video.</p>
+          <p class="lede">On the iPhone, the tools run natively. <a href="#finalcut">FinalCap</a>, FinalCut’s iOS sibling, executes twenty-one of the same tool calls on-device using AVFoundation and Core Image, while Apple’s on-device speech recognition generates captions. If a tool has no native implementation, it can fall back to the server—but only when Cloud Processing is explicitly enabled. It is off by default.</p>
+          <p class="lede"><a href="#protune">ProTune AI Camera</a> follows the same architecture. A Vision pass analyzes the live viewfinder, and voice notes are transcribed locally. Grok enters the loop only for higher-level refinement: it must enumerate the available photography recipes, inspect relevant candidates, and select one. Its output is translated directly into shutter speed, ISO, white balance, focus, and zoom targets on the active camera session.</p>
+          <p class="lede"><a href="#music-reader">Music Reader</a> takes the idea further: it reads a photograph of sheet music entirely offline. Its recognition pipeline splits inference between Core ML and ONNX Runtime, while the decoder keeps its KV cache resident across token steps so intermediate state never has to round-trip through Swift.</p>
+          <p class="lede">In the browser, <a href="#music-radar">AI Music Radar</a> runs its transcription model on WebGPU, with WebGL and WASM fallbacks, while microphone capture happens inside an AudioWorklet. On iPhone, the same Basic Pitch model runs through Core ML.</p>
+          <p class="lede">Real-time performance is the common constraint across all of these systems. The <a href="#libraries">SoundFont synthesizer</a> shared by the music applications renders audio without allocating memory or taking locks on the realtime thread, while <a href="#earlier">earlier browser experiments</a> pair AudioWorklets with WebAssembly for low-latency DSP.</p>
+          <p class="lede"><a href="#projects">The projects below</a> break down these systems individually. Status notes are current as of late 2026.</p>
 
           <nav class="toc" aria-label="On this page">
             <strong>On this page</strong>
@@ -447,7 +412,7 @@
 
         <hr class="rule" />
 
-        <div class="rise d3">
+        <div id="projects" class="rise d3">
           <article id="seal" class="featured">
             <p class="kicker">Featured</p>
             <h2>Seal of the High Priestess</h2>
