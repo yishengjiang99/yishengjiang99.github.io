@@ -3,24 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Yisheng Jiang</title>
+    <title>Yisheng Jiang — Agentic AI engineer, real-time systems at the edge</title>
     <meta
       name="description"
-      content="Yisheng Jiang — iOS and web tools for cameras, sheet music, and video. On-device ML, FFmpeg, and SoundFonts."
+      content="Yisheng Jiang — full-stack agentic AI engineer building high-performance, real-time systems: models running on the iPhone, on WebGPU and WebAssembly in Chrome, and LLMs wired to real tools."
     />
     <meta name="theme-color" content="#eef3f2" />
-    <meta property="og:title" content="Yisheng Jiang" />
+    <meta property="og:title" content="Yisheng Jiang — Agentic AI engineer, real-time systems at the edge" />
     <meta
       property="og:description"
-      content="Yisheng Jiang — iOS and web tools for cameras, sheet music, and video. On-device ML, FFmpeg, and SoundFonts."
+      content="Yisheng Jiang — full-stack agentic AI engineer building high-performance, real-time systems: models running on the iPhone, on WebGPU and WebAssembly in Chrome, and LLMs wired to real tools."
     />
     <meta property="og:image" content="https://yishengjiang99.github.io/og.jpg" />
     <meta property="og:url" content="https://yishengjiang99.github.io/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Yisheng Jiang" />
+    <meta name="twitter:title" content="Yisheng Jiang — Agentic AI engineer, real-time systems at the edge" />
     <meta
       name="twitter:description"
-      content="Yisheng Jiang — iOS and web tools for cameras, sheet music, and video. On-device ML, FFmpeg, and SoundFonts."
+      content="Yisheng Jiang — full-stack agentic AI engineer building high-performance, real-time systems: models running on the iPhone, on WebGPU and WebAssembly in Chrome, and LLMs wired to real tools."
     />
     <meta name="twitter:image" content="https://yishengjiang99.github.io/og.jpg" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -200,6 +200,16 @@
         color: var(--fg);
       }
       .lede:last-child { margin-bottom: 0; }
+      .headline {
+        margin: 0 0 1.15rem;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.4rem, 3.6vw, 1.7rem);
+        font-weight: 560;
+        line-height: 1.25;
+        letter-spacing: -0.015em;
+        color: var(--fg);
+        max-width: 36rem;
+      }
       .toc {
         margin: 1.75rem 0 0;
         padding: 1rem 1.1rem;
@@ -367,16 +377,42 @@
         </header>
 
         <div class="rise d2">
-          <p class="lede">
-            I build camera-first iOS apps and browser tools that turn media into something you can
-            act on: set the shot, read a page of music, hear a performance, or edit video with
-            natural language. Most of the interesting work sits on the phone — Core&nbsp;ML,
-            AVFoundation, on-device speech — with FFmpeg, WASM, and SoundFonts when the web is
-            the right surface.
+          <p class="headline">
+            Full-stack agentic AI engineer. High-performance, real-time systems at the edge.
           </p>
           <p class="lede">
-            Below are the projects I have been shipping recently, written out as short essays
-            rather than a link dump. Status notes are current as of late&nbsp;2026.
+            I build software where the model has to keep up with the world: a camera still
+            pointed at the scene, a song still playing, a page of music someone wants to hear
+            right now. That means running inference where the data already is — on the
+            iPhone’s GPU and Neural Engine, in Chrome on WebGPU and WebAssembly — and saving
+            the server for the work that truly needs it. When a large language model is in the
+            loop, I give it real tools with narrow contracts and let it act, instead of asking
+            it to describe what someone else should do.
+          </p>
+          <p class="lede">
+            On the phone, that looks like ProTune AI Camera, which reads the viewfinder with
+            Vision for an instant first pass, then runs a Grok tool loop that must list the
+            recipe catalog, inspect candidates, and select one; the answer comes back as
+            shutter, ISO, white balance, focus, and zoom targets applied straight to the live
+            AVFoundation session, and voice notes are transcribed on the device. Music Reader
+            turns a photo of sheet music into sound without leaving the phone, splitting its
+            models between Core&nbsp;ML and ONNX Runtime and keeping the decoder’s KV-cache
+            resident between token steps so nothing is copied through Swift, then plays the
+            result through a SoundFont synth whose render path never allocates or takes a
+            lock. AI Music Radar runs the other direction, microphone to engraved score with
+            Basic Pitch in Core&nbsp;ML, and the same model runs in the browser on WebGPU,
+            WebGL, or WASM.
+          </p>
+          <p class="lede">
+            On the server, FinalCut hands Grok more than forty function-calling tools over
+            FFmpeg. Ask it to “subtitle the song in Chinese” and it transcribes the vocals
+            with word timestamps, corrects misheard lyrics against the published ones,
+            translates each line, and burns in two-line bilingual captions; its iOS sibling,
+            FinalCap, moves captioning onto the phone with Apple’s on-device speech
+            recognition. Underneath all of it is a habit from my earlier browser audio work:
+            real-time code on a fixed budget — AudioWorklets fed by WebAssembly, zero-copy
+            buffers, renderers that never block. The write-ups below go project by project;
+            status notes are current as of late&nbsp;2026.
           </p>
 
           <nav class="toc" aria-label="On this page">
@@ -456,8 +492,9 @@
             <p>
               The product problem is familiar to anyone who has collected “photo recipes” from
               blogs and still ended up guessing dial positions on a phone. ProTune bundles a
-              small catalog of field recipes, then uses a fast on-device pass plus an optional
-              cloud refine to pick and apply the right one. Teach Mode explains which recipe
+              small catalog of field recipes, then uses a fast on-device Vision pass plus an
+              optional cloud refine — a Grok tool loop grounded in that catalog, so it cannot
+              invent a recipe — to pick and apply the right one. Teach Mode explains which recipe
               won and why the dials moved. Pro unlocks unlimited Auto Optimize, manual A/S/M
               dials, and full teach sheets through StoreKit subscriptions; Free Peek keeps the
               viewfinder and a daily optimize quota.
