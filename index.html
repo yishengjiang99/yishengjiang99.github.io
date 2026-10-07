@@ -281,6 +281,37 @@
         flex-direction: column;
         gap: 0.35rem;
       }
+      .shots {
+        display: flex;
+        gap: 0.75rem;
+        margin: 1.15rem 0 0;
+        padding: 0 0 0.4rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+      .shots a {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        line-height: 0;
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        overflow: hidden;
+        background: var(--surface);
+        box-shadow: 0 1px 2px rgb(18 24 22 / 6%);
+        transition: border-color 200ms ease-out;
+      }
+      .shots a:hover { border-color: var(--accent); }
+      .shots img {
+        display: block;
+        width: 9.25rem;
+        height: auto;
+      }
+      .shots.wide a { flex: 1 1 auto; max-width: 30rem; }
+      .shots.wide img { width: 100%; }
+      @media (min-width: 720px) {
+        .shots img { width: 11.5rem; }
+      }
       article.featured {
         padding: 1.35rem 1.25rem 1.25rem;
         border: 1px solid var(--line);
@@ -440,6 +471,11 @@
               the ads path. Bundle id <code>com.ragnus.mvp</code>. Companion marketing site at
               photo.grepawk.com.
             </p>
+            <div class="shots" aria-label="ProTune AI Camera App Store screenshots">
+              <a href="/img/protune/01-set-the-shot.webp" target="_blank" rel="noopener"><img src="/img/protune/01-set-the-shot.webp" alt="ProTune AI Camera viewfinder with the Auto Optimize button over a mountain scene at sunset" width="368" height="800" loading="lazy" decoding="async" /></a>
+              <a href="/img/protune/02-auto-optimize.webp" target="_blank" rel="noopener"><img src="/img/protune/02-auto-optimize.webp" alt="ProTune Auto Optimize results: shutter, ISO, EV, white balance and focus changes ready to apply to the camera" width="368" height="800" loading="lazy" decoding="async" /></a>
+              <a href="/img/protune/03-real-dials.webp" target="_blank" rel="noopener"><img src="/img/protune/03-real-dials.webp" alt="ProTune manual capture dials for shutter, ISO, EV, white balance, focus, zoom, torch and look" width="368" height="800" loading="lazy" decoding="async" /></a>
+            </div>
             <div class="links">
               <ul>
                 <li><a href="https://apps.apple.com/us/app/protune-ai-camera/id6813991381" target="_blank" rel="noopener noreferrer">App Store — ProTune AI Camera</a></li>
@@ -474,6 +510,11 @@
               The App Store product page is not public yet, so the links below are the source
               repo and related privacy page only.
             </p>
+            <div class="shots" aria-label="Music Reader App Store screenshots">
+              <a href="/img/music-reader/01-snap-and-play.webp" target="_blank" rel="noopener"><img src="/img/music-reader/01-snap-and-play.webp" alt="Music Reader playing back a photographed page of sheet music with the current staff highlighted" width="368" height="800" loading="lazy" decoding="async" /></a>
+              <a href="/img/music-reader/02-slow-it-down.webp" target="_blank" rel="noopener"><img src="/img/music-reader/02-slow-it-down.webp" alt="Music Reader playback of Für Elise with tempo control from 0.5× to 2×" width="368" height="800" loading="lazy" decoding="async" /></a>
+              <a href="/img/music-reader/03-reads-on-device.webp" target="_blank" rel="noopener"><img src="/img/music-reader/03-reads-on-device.webp" alt="Music Reader progress card reading music on the iPhone with GPU acceleration and no internet needed" width="368" height="800" loading="lazy" decoding="async" /></a>
+            </div>
             <div class="links">
               <ul>
                 <li><a href="https://github.com/yishengjiang99/omr-sheet-cam" target="_blank" rel="noopener noreferrer">GitHub — omr-sheet-cam</a></li>
@@ -501,6 +542,11 @@
               product constraint is keeping FFmpeg jobs reliable while the chat layer stays
               useful instead of decorative.
             </p>
+            <div class="shots" aria-label="FinalCap iOS App Store screenshots">
+              <a href="/img/finalcap/01-chat-the-edit.webp" target="_blank" rel="noopener"><img src="/img/finalcap/01-chat-the-edit.webp" alt="FinalCap chat editor trimming the first second of a clip from a typed request" width="368" height="800" loading="lazy" decoding="async" /></a>
+              <a href="/img/finalcap/04-add-a-title.webp" target="_blank" rel="noopener"><img src="/img/finalcap/04-add-a-title.webp" alt="FinalCap adding a “Day One” title on the clip preview from a chat request" width="368" height="800" loading="lazy" decoding="async" /></a>
+              <a href="/img/finalcap/06-save-to-photos.webp" target="_blank" rel="noopener"><img src="/img/finalcap/06-save-to-photos.webp" alt="FinalCap saving the edited video to Photos without uploading it" width="368" height="800" loading="lazy" decoding="async" /></a>
+            </div>
             <div class="links">
               <ul>
                 <li><a href="https://grepawk.com" target="_blank" rel="noopener noreferrer">Live — grepawk.com</a></li>
@@ -527,6 +573,11 @@
               <code>com.ragnus.pnge</code>); it is public enough to talk about, still early
               relative to ProTune on the store.
             </p>
+            <div class="shots" aria-label="AI Music Radar App Store screenshots">
+              <a href="/img/music-radar/01-hear-it.webp" target="_blank" rel="noopener"><img src="/img/music-radar/01-hear-it.webp" alt="AI Music Radar library of recorded takes with a microphone button to record" width="368" height="800" loading="lazy" decoding="async" /></a>
+              <a href="/img/music-radar/03-playback.webp" target="_blank" rel="noopener"><img src="/img/music-radar/03-playback.webp" alt="AI Music Radar engraved sheet music with notes lighting up during playback" width="368" height="800" loading="lazy" decoding="async" /></a>
+              <a href="/img/music-radar/05-export.webp" target="_blank" rel="noopener"><img src="/img/music-radar/05-export.webp" alt="AI Music Radar export options for MIDI, MusicXML, PDF, MP3 and PNG" width="368" height="800" loading="lazy" decoding="async" /></a>
+            </div>
             <div class="links">
               <ul>
                 <li><a href="https://grepawk.com/music-hear/" target="_blank" rel="noopener noreferrer">Web demo — music-hear</a></li>
@@ -608,6 +659,9 @@
               GitHub Actions workflow commits fresh clips back and rebuilds Pages. A Playwright
               headless suite runs in CI.
             </p>
+            <div class="shots wide" aria-label="Seal of the High Priestess screenshot">
+              <a href="/img/seal/title-screen.webp" target="_blank" rel="noopener"><img src="/img/seal/title-screen.webp" alt="Seal of the High Priestess title screen with Elara and Kael before a ruined temple gate" width="800" height="500" loading="lazy" decoding="async" /></a>
+            </div>
             <div class="links">
               <ul>
                 <li><a href="https://yishengjiang99.github.io/seal-of-the-high-priestess/" target="_blank" rel="noopener noreferrer">Play — yishengjiang99.github.io/seal-of-the-high-priestess</a></li>
