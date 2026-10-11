@@ -3,43 +3,37 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Yisheng Jiang — Full-stack agentic AI engineer, edge AI and real-time media</title>
-    <meta
-      name="description"
-      content="I build and operate fast, AI-powered camera, audio, and video products across servers, browsers, and edge devices."
-    />
+    <title>Yisheng Jiang — Full-stack agentic AI engineer</title>
+    <meta name="description" content="Full-stack agentic AI engineer. I build and run AI camera, music, and video apps: FinalCap, ProTune AI Camera, Music Reader, AI Music Radar, and gbk." />
+    <link rel="canonical" href="https://yishengjiang99.github.io/" />
+    <meta name="author" content="Yisheng Jiang" />
     <meta name="theme-color" content="#eef3f2" />
-    <meta property="og:title" content="Yisheng Jiang — Full-stack agentic AI engineer, edge AI and real-time media" />
-    <meta
-      property="og:description"
-      content="I build and operate fast, AI-powered camera, audio, and video products across servers, browsers, and edge devices."
-    />
-    <meta property="og:image" content="https://yishengjiang99.github.io/og.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Yisheng Jiang" />
+    <meta property="og:title" content="Yisheng Jiang — Full-stack agentic AI engineer" />
+    <meta property="og:description" content="AI camera, music, and video apps, with tool calls running on the phone, in the browser, or on the server." />
     <meta property="og:url" content="https://yishengjiang99.github.io/" />
+    <meta property="og:image" content="https://yishengjiang99.github.io/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Yisheng Jiang: screenshots of FinalCap, ProTune AI Camera, Music Reader and AI Music Radar" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Yisheng Jiang — Full-stack agentic AI engineer, edge AI and real-time media" />
-    <meta
-      name="twitter:description"
-      content="I build and operate fast, AI-powered camera, audio, and video products across servers, browsers, and edge devices."
-    />
+    <meta name="twitter:site" content="@YishengJiang" />
+    <meta name="twitter:title" content="Yisheng Jiang — Full-stack agentic AI engineer" />
+    <meta name="twitter:description" content="AI camera, music, and video apps, with tool calls running on the phone, in the browser, or on the server." />
     <meta name="twitter:image" content="https://yishengjiang99.github.io/og.jpg" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,640&family=Outfit:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href="/fonts/fraunces-560.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" as="image" href="/img/finalcap/01-chat-the-edit.webp" imagesrcset="/img/finalcap/01-chat-the-edit-300.webp 300w, /img/finalcap/01-chat-the-edit.webp 600w" imagesizes="(min-width: 760px) 230px, 42vw" fetchpriority="high" />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"Person","name":"Yisheng Jiang","url":"https://yishengjiang99.github.io/","jobTitle":"Full-stack agentic AI engineer","sameAs":["https://github.com/yishengjiang99","https://x.com/YishengJiang","https://www.linkedin.com/in/yishengjiang"]}
+    </script>
     <script>
       (function () {
         try {
           var s = localStorage.getItem("theme");
-          var t =
-            s === "light" || s === "dark"
-              ? s
-              : matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
+          var t = s === "light" || s === "dark" ? s : matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
           document.documentElement.dataset.theme = t;
           var meta = document.querySelector('meta[name="theme-color"]');
           if (meta) meta.setAttribute("content", t === "dark" ? "#0d1211" : "#eef3f2");
@@ -47,11 +41,25 @@
       })();
     </script>
     <style>
+      @font-face {
+        font-family: Fraunces;
+        font-style: normal;
+        font-weight: 560;
+        font-display: swap;
+        src: url(/fonts/fraunces-560.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: Outfit;
+        font-style: normal;
+        font-weight: 400 600;
+        font-display: swap;
+        src: url(/fonts/outfit.woff2) format("woff2");
+      }
       :root {
         --bg: #eef3f2;
         --surface: #f8fbfa;
         --fg: #121816;
-        --muted: #5c6b67;
+        --muted: #4f5e5a;
         --line: #d3e0dc;
         --accent: #0f6e62;
         --accent-soft: #d7efe9;
@@ -62,7 +70,7 @@
         --bg: #0d1211;
         --surface: #161d1b;
         --fg: #e7f1ee;
-        --muted: #93a8a2;
+        --muted: #9fb3ad;
         --line: #273330;
         --accent: #6dcec0;
         --accent-soft: #16302c;
@@ -76,39 +84,23 @@
         background: var(--bg);
         color: var(--fg);
         font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
-        line-height: 1.65;
+        line-height: 1.55;
         font-size: 1.0625rem;
       }
       button, a { cursor: pointer; }
-      :focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 3px;
-      }
-      a {
-        color: var(--accent);
-        text-decoration-thickness: 1px;
-        text-underline-offset: 0.18em;
-      }
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+      a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
       a:hover { text-decoration-thickness: 2px; }
       .stage {
         display: flex;
         min-height: 100dvh;
         justify-content: center;
-        padding: 1.5rem 1.15rem 3.5rem;
-        background-image: radial-gradient(120% 55% at 50% -12%, var(--wash), transparent 58%);
+        padding: 1.5rem 1.15rem 3rem;
+        background-image: radial-gradient(120% 40% at 50% -10%, var(--wash), transparent 58%);
       }
-      @media (min-width: 720px) {
-        .stage { padding: 2.75rem 1.5rem 4.5rem; }
-      }
-      .sheet {
-        width: 100%;
-        max-width: 40rem;
-      }
-      .top {
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 0.75rem;
-      }
+      @media (min-width: 720px) { .stage { padding: 2.5rem 1.5rem 4rem; } }
+      .sheet { width: 100%; max-width: 62rem; }
+      .top { display: flex; justify-content: flex-end; margin-bottom: 0.5rem; }
       .icon-btn {
         display: grid;
         width: 2.75rem;
@@ -129,48 +121,16 @@
         inset: 0;
         display: grid;
         place-items: center;
-        transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1), transform 200ms cubic-bezier(0.2, 0, 0, 1), filter 200ms cubic-bezier(0.2, 0, 0, 1);
+        transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1), transform 200ms cubic-bezier(0.2, 0, 0, 1);
       }
       html:not([data-theme="dark"]) .icon-moon,
-      html[data-theme="dark"] .icon-sun {
-        opacity: 0;
-        transform: scale(0.25);
-        filter: blur(4px);
-      }
-      header {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding-bottom: 0.5rem;
-      }
-      .avatar-row {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1.35rem;
-      }
-      .avatar-ring {
-        border-radius: 999px;
-        background: var(--bg);
-        padding: 3px;
-        box-shadow: 0 0 0 1px var(--line);
-        flex: none;
-      }
-      .avatar, .fallback {
-        width: 4.5rem;
-        height: 4.5rem;
-        border-radius: 999px;
-        display: block;
-        object-fit: cover;
-      }
-      .fallback {
-        display: none;
-        place-items: center;
-        background: var(--accent-soft);
-        color: var(--accent);
-        font-family: Fraunces, Georgia, serif;
-        font-size: 1.35rem;
-      }
+      html[data-theme="dark"] .icon-sun { opacity: 0; transform: scale(0.25); }
+      .hero { max-width: 40rem; }
+      header { display: flex; flex-direction: column; align-items: flex-start; }
+      .avatar-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+      .avatar-ring { border-radius: 999px; background: var(--bg); padding: 3px; box-shadow: 0 0 0 1px var(--line); flex: none; }
+      .avatar, .fallback { width: 4.5rem; height: 4.5rem; border-radius: 999px; display: block; object-fit: cover; }
+      .fallback { display: none; place-items: center; background: var(--accent-soft); color: var(--accent); font-family: Fraunces, Georgia, serif; font-size: 1.35rem; }
       .identity .name {
         margin: 0;
         font-family: Fraunces, Georgia, serif;
@@ -179,187 +139,80 @@
         line-height: 1.05;
         letter-spacing: -0.02em;
       }
-      .handle {
-        margin: 0.35rem 0 0;
-        font-size: 0.9rem;
-        color: var(--muted);
-      }
-      .social {
-        display: flex;
-        gap: 0.65rem;
-        margin-top: 1.1rem;
-      }
-      .lede, article p {
-        margin: 0 0 1.05rem;
-        color: var(--fg);
-        max-width: 38rem;
-      }
-      .lede {
-        font-size: 1.125rem;
-        line-height: 1.7;
-        color: var(--fg);
-      }
-      .lede:last-child { margin-bottom: 0; }
+      .handle { margin: 0.35rem 0 0; font-size: 0.9rem; color: var(--muted); }
+      .social { display: flex; gap: 0.65rem; margin-top: 1rem; }
       .headline {
-        margin: 0 0 1.15rem;
+        margin: 1.5rem 0 0.75rem;
         font-family: Fraunces, Georgia, serif;
-        font-size: clamp(1.4rem, 3.6vw, 1.7rem);
+        font-size: clamp(1.4rem, 3.6vw, 1.75rem);
         font-weight: 560;
         line-height: 1.25;
         letter-spacing: -0.015em;
-        color: var(--fg);
-        max-width: 36rem;
       }
-      .subhead {
-        margin: -0.6rem 0 1.25rem;
-        font-size: 1.05rem;
-        line-height: 1.55;
-        color: var(--muted);
-        max-width: 36rem;
-      }
-      .toc {
-        margin: 1.75rem 0 0;
-        padding: 1rem 1.1rem;
-        border: 1px solid var(--line);
-        border-radius: 1rem;
-        background: var(--surface);
-        font-size: 0.95rem;
-      }
-      .toc strong {
-        display: block;
-        font-weight: 500;
-        margin-bottom: 0.45rem;
-      }
-      .toc ol {
-        margin: 0;
-        padding-left: 1.2rem;
-        color: var(--muted);
-      }
-      .toc li { margin: 0.2rem 0; }
-      .toc a { color: var(--fg); text-decoration: none; }
-      .toc a:hover { color: var(--accent); text-decoration: underline; }
-      hr.rule {
-        border: 0;
-        border-top: 1px solid var(--line);
-        margin: 2.4rem 0;
-      }
-      article, #projects {
-        scroll-margin-top: 1.5rem;
-      }
-      article h2 {
-        margin: 0 0 0.85rem;
-        font-family: Fraunces, Georgia, serif;
-        font-size: 1.55rem;
-        font-weight: 560;
-        letter-spacing: -0.015em;
-        line-height: 1.2;
-      }
-      .status {
-        display: inline-block;
-        margin: 0 0 1rem;
-        padding: 0.2rem 0.55rem;
-        border-radius: 999px;
-        background: var(--accent-soft);
+      .subhead { margin: 0 0 0.75rem; color: var(--muted); }
+      .points { margin: 0; padding-left: 1.15rem; }
+      .points li { margin: 0.2rem 0; }
+      .points li::marker { color: var(--accent); }
+      .section-title {
+        margin: 2.25rem 0 1rem;
         color: var(--accent);
-        font-size: 0.78rem;
-        font-weight: 500;
-        letter-spacing: 0.01em;
-      }
-      .links {
-        margin: 1.15rem 0 0;
-        padding: 0.85rem 1rem;
-        border-left: 3px solid var(--accent);
-        background: color-mix(in srgb, var(--accent-soft) 55%, transparent);
-        border-radius: 0 0.75rem 0.75rem 0;
-        font-size: 0.95rem;
-      }
-      .links ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.35rem;
-      }
-      .shots {
-        display: flex;
-        gap: 0.75rem;
-        margin: 1.15rem 0 0;
-        padding: 0 0 0.4rem;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-      }
-      .shots a {
-        flex: 0 0 auto;
-        scroll-snap-align: start;
-        line-height: 0;
-        border: 1px solid var(--line);
-        border-radius: 1rem;
-        overflow: hidden;
-        background: var(--surface);
-        box-shadow: 0 1px 2px rgb(18 24 22 / 6%);
-        transition: border-color 200ms ease-out;
-      }
-      .shots a:hover { border-color: var(--accent); }
-      .shots img {
-        display: block;
-        width: 9.25rem;
-        height: auto;
-      }
-      .shots.wide a { flex: 1 1 auto; max-width: 30rem; }
-      .shots.wide img { width: 100%; }
-      @media (min-width: 720px) {
-        .shots img { width: 11.5rem; }
-      }
-      article.featured {
-        padding: 1.35rem 1.25rem 1.25rem;
-        border: 1px solid var(--line);
-        border-top: 3px solid var(--accent);
-        border-radius: 1rem;
-        background: var(--surface);
-        box-shadow: 0 1px 2px rgb(18 24 22 / 6%);
-      }
-      @media (min-width: 720px) {
-        article.featured { padding: 1.6rem 1.6rem 1.45rem; }
-      }
-      .kicker {
-        margin: 0 0 0.35rem;
-        color: var(--accent);
-        font-size: 0.78rem;
+        font-size: 0.8rem;
         font-weight: 600;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-      .also h2 {
-        margin: 0 0 0.75rem;
+      .grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+      @media (min-width: 760px) { .grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
+      .card {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        background: var(--surface);
+        box-shadow: 0 1px 2px rgb(18 24 22 / 6%);
+        overflow: hidden;
+        scroll-margin-top: 1.5rem;
+      }
+      .shots {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        padding: 0.9rem 0.9rem 0;
+      }
+      .shots img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 0.65rem;
+        border: 1px solid var(--line);
+        background: var(--bg);
+      }
+      .card-body { padding: 0.9rem 1.1rem 1.1rem; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
+      .card h3 {
+        margin: 0;
         font-family: Fraunces, Georgia, serif;
         font-size: 1.35rem;
         font-weight: 560;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
       }
-      .also p { color: var(--muted); font-size: 0.98rem; }
-      footer {
-        margin-top: 2.75rem;
-        padding-top: 1.25rem;
-        border-top: 1px solid var(--line);
-        text-align: left;
-        font-size: 0.875rem;
-        color: var(--muted);
+      .status {
+        align-self: flex-start;
+        margin: 0;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 500;
       }
+      .card p { margin: 0; }
+      .links { list-style: none; margin: auto 0 0; padding: 0.35rem 0 0; display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; font-size: 0.95rem; font-weight: 500; }
+      .also { margin: 2.25rem 0 0; max-width: 40rem; color: var(--muted); font-size: 0.98rem; }
+      .also p { margin: 0 0 0.6rem; }
+      footer { margin-top: 2.5rem; padding-top: 1.1rem; border-top: 1px solid var(--line); font-size: 0.875rem; color: var(--muted); }
       svg { width: 1.25rem; height: 1.25rem; }
-      @media (prefers-reduced-motion: no-preference) {
-        .rise { animation: rise 480ms cubic-bezier(0.2, 0, 0, 1) both; }
-        .d1 { animation-delay: 40ms; }
-        .d2 { animation-delay: 110ms; }
-        .d3 { animation-delay: 180ms; }
-      }
-      @keyframes rise {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: none; }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .icon-swap > span, .icon-btn { transition: none; }
-      }
+      @media (prefers-reduced-motion: reduce) { .icon-swap > span, .icon-btn { transition: none; } }
     </style>
   </head>
   <body>
@@ -383,7 +236,7 @@
           </button>
         </div>
 
-        <header class="rise d1">
+        <header>
           <div class="avatar-row">
             <span class="avatar-ring">
               <img
@@ -413,256 +266,118 @@
             </a>
           </nav>
         </header>
-
-        <div class="rise d2">
+        <section class="hero" aria-label="About">
           <h1 class="headline">Full-stack agentic AI engineer who ships production products end to end, putting tool calls wherever they run best.</h1>
-          <p class="subhead">I build and operate fast, AI-powered camera, audio, and video products across servers, browsers, and edge devices. My work goes beyond prototypes: I take systems from architecture and implementation through deployment, performance tuning, and live product iteration.</p>
-          <p class="lede">An agent is only as good as where its tools run. I place each part of the agentic loop—the model call, tool execution, and inference behind it—on the compute tier that serves it best.</p>
-          <p class="lede">The default is local first, with the cloud as a deliberate fallback rather than a reflex.</p>
-          <p class="lede">On the server, <a href="#finalcut">FinalCut</a> gives Grok more than forty function-calling tools over FFmpeg. Ask it to “subtitle the song in Chinese,” and the lyric-captions tool uploads only the audio track, transcribes it with word-level timestamps through Whisper, asks Grok to identify the song, corrects transcription errors against published lyrics, and translates each line. The result is a set of synchronized, two-line bilingual captions ready to burn into the video.</p>
-          <p class="lede">On the iPhone, the tools run natively. <a href="#finalcut">FinalCap</a>, FinalCut’s iOS sibling, executes twenty-one of the same tool calls on-device using AVFoundation and Core Image, while Apple’s on-device speech recognition generates captions. If a tool has no native implementation, it can fall back to the server—but only when Cloud Processing is explicitly enabled. It is off by default.</p>
-          <p class="lede"><a href="#protune">ProTune AI Camera</a> follows the same architecture. A Vision pass analyzes the live viewfinder, and voice notes are transcribed locally. Grok enters the loop only for higher-level refinement: it must enumerate the available photography recipes, inspect relevant candidates, and select one. Its output is translated directly into shutter speed, ISO, white balance, focus, and zoom targets on the active camera session.</p>
-          <p class="lede"><a href="#music-reader">Music Reader</a> takes the idea further: it reads a photograph of sheet music entirely offline. Its recognition pipeline splits inference between Core ML and ONNX Runtime, while the decoder keeps its KV cache resident across token steps so intermediate state never has to round-trip through Swift.</p>
-          <p class="lede">In the browser, <a href="#music-radar">AI Music Radar</a> runs its transcription model on WebGPU, with WebGL and WASM fallbacks, while microphone capture happens inside an AudioWorklet. On iPhone, the same Basic Pitch model runs through Core ML.</p>
-          <p class="lede">Real-time performance is the common constraint across all of these systems. The <a href="#libraries">SoundFont synthesizer</a> shared by the music applications renders audio without allocating memory or taking locks on the realtime thread, while <a href="#earlier">earlier browser experiments</a> pair AudioWorklets with WebAssembly for low-latency DSP.</p>
-          <p class="lede"><a href="#projects">The projects below</a> break down these systems individually. Status notes are current as of late 2026.</p>
+          <p class="subhead">I build and run fast AI camera, music, and video apps, from architecture to the App Store.</p>
+          <ul class="points">
+            <li>Each tool call runs where it works best: on the phone, in the browser, or on the server.</li>
+            <li>Local first. The cloud is a deliberate fallback.</li>
+            <li>Real-time audio and video, tuned for speed.</li>
+          </ul>
+        </section>
 
-          <nav class="toc" aria-label="On this page">
-            <strong>On this page</strong>
-            <ol>
-              <li><a href="#protune">ProTune AI Camera</a></li>
-              <li><a href="#music-reader">AI Camera — Music Reader</a></li>
-              <li><a href="#finalcut">FinalCut / FinalCap</a></li>
-              <li><a href="#music-radar">AI Music Radar</a></li>
-              <li><a href="#gbk">gbk — SF2 + MIDI Explorer</a></li>
-              <li><a href="#libraries">Shared libraries</a></li>
-              <li><a href="#earlier">Earlier browser experiments</a></li>
-            </ol>
-          </nav>
+        <h2 class="section-title" id="projects">Projects</h2>
+        <div class="grid">
+          <article class="card" id="finalcap">
+            <div class="shots">
+              <img src="/img/finalcap/01-chat-the-edit.webp" srcset="/img/finalcap/01-chat-the-edit-300.webp 300w, /img/finalcap/01-chat-the-edit.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="FinalCap chat editor trimming a clip from a typed request" width="600" height="1304" fetchpriority="high" decoding="async" />
+              <img src="/img/finalcap/05-color-on-command.webp" srcset="/img/finalcap/05-color-on-command-300.webp 300w, /img/finalcap/05-color-on-command.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="FinalCap applying a warmer color look from a chat request" width="600" height="1304" decoding="async" />
+            </div>
+            <div class="card-body">
+              <h3>FinalCap</h3>
+              <p class="status">Web live · iOS app coming soon</p>
+              <p>AI video editor. Chat with Grok, and it runs 45 FFmpeg tools for you.</p>
+              <p>The web app edits in your browser with ffmpeg.wasm, so your video isn’t uploaded. In-browser captions, translation, and lyric captions. Lighthouse performance: 99 mobile, 100 desktop.</p>
+              <ul class="links">
+                <li><a href="https://grepawk.com" target="_blank" rel="noopener noreferrer">grepawk.com</a></li>
+                <li><a href="https://github.com/yishengjiang99/finalcut" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card" id="protune">
+            <div class="shots">
+              <img src="/img/protune/02-auto-optimize.webp" srcset="/img/protune/02-auto-optimize-300.webp 300w, /img/protune/02-auto-optimize.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="ProTune Auto Optimize setting shutter, ISO, EV, white balance and focus for a mountain sunset" width="600" height="1304" decoding="async" />
+              <img src="/img/protune/04-control-drawer.webp" srcset="/img/protune/04-control-drawer-300.webp 300w, /img/protune/04-control-drawer.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="ProTune manual controls drawer with sliders for every camera dial" width="600" height="1304" decoding="async" />
+            </div>
+            <div class="card-body">
+              <h3>ProTune AI Camera</h3>
+              <p class="status">Live on the App Store</p>
+              <p>The AI camera that sets shutter, ISO, and focus for you. Formerly AI Camera – Auto Recipes.</p>
+              <p>On-device Vision reads the scene. Grok picks a recipe, and the app sets the real camera dials.</p>
+              <p>Personalized push reminders, written by Grok.</p>
+              <ul class="links">
+                <li><a href="https://apps.apple.com/app/id6813991381" target="_blank" rel="noopener noreferrer">App Store</a></li>
+                <li><a href="https://photo.grepawk.com" target="_blank" rel="noopener noreferrer">photo.grepawk.com</a></li>
+                <li><a href="https://github.com/yishengjiang99/photo-recipes" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card" id="music-reader">
+            <div class="shots">
+              <img src="/img/music-reader/01-snap-and-play.webp" srcset="/img/music-reader/01-snap-and-play-300.webp 300w, /img/music-reader/01-snap-and-play.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="Music Reader playing a photographed page of sheet music with the current staff highlighted" width="600" height="1304" loading="lazy" decoding="async" />
+              <img src="/img/music-reader/02-slow-it-down.webp" srcset="/img/music-reader/02-slow-it-down-300.webp 300w, /img/music-reader/02-slow-it-down.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="Music Reader playing Für Elise with a tempo control" width="600" height="1304" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <h3>AI Camera – Music Reader</h3>
+              <p class="status">In App Store review · coming soon</p>
+              <p>Snap sheet music and hear it play. The page highlights as it follows along.</p>
+              <p>Recognition runs on the iPhone with Core ML and ONNX Runtime. No upload, no account.</p>
+              <ul class="links">
+                <li><a href="https://github.com/yishengjiang99/omr-sheet-cam" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card" id="music-radar">
+            <div class="shots">
+              <img src="/img/music-radar/01-hear-it.webp" srcset="/img/music-radar/01-hear-it-300.webp 300w, /img/music-radar/01-hear-it.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="AI Music Radar list of recorded takes with a record button" width="600" height="1304" loading="lazy" decoding="async" />
+              <img src="/img/music-radar/03-playback.webp" srcset="/img/music-radar/03-playback-300.webp 300w, /img/music-radar/03-playback.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="AI Music Radar sheet music with notes lighting up during playback" width="600" height="1304" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <h3>AI Music Radar</h3>
+              <p class="status">In App Store review · coming soon</p>
+              <p>Turns what you hear into sheet music, live on your iPhone.</p>
+              <p>A Basic Pitch model runs on-device with Core ML. Export MIDI, MusicXML, or PDF.</p>
+              <ul class="links">
+                <li><a href="https://music.grepawk.com" target="_blank" rel="noopener noreferrer">music.grepawk.com</a></li>
+                <li><a href="https://grepawk.com/music-hear/" target="_blank" rel="noopener noreferrer">Web demo</a></li>
+                <li><a href="https://github.com/yishengjiang99/earsheet" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card" id="gbk">
+            <div class="shots">
+              <img src="/img/gbk/player.webp" srcset="/img/gbk/player-300.webp 300w, /img/gbk/player.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="gbk’s Winamp-skinned player with a playlist of MIDI song titles" width="600" height="658" loading="lazy" decoding="async" />
+              <img src="/img/gbk/sf2-explorer.webp" srcset="/img/gbk/sf2-explorer-300.webp 300w, /img/gbk/sf2-explorer.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="gbk SF2 Explorer listing the SoundFont’s presets by name, bank and program" width="600" height="658" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <h3>gbk — SF2 + MIDI Explorer</h3>
+              <p class="status">Live in the browser · open source</p>
+              <p>SoundFont synth and MIDI player in the browser. Browse presets and audition samples.</p>
+              <p>The synth runs in an AudioWorklet, off the main thread. Export any song to WAV.</p>
+              <ul class="links">
+                <li><a href="https://yishengjiang99.github.io/gbk/" target="_blank" rel="noopener noreferrer">Open gbk</a></li>
+                <li><a href="https://github.com/yishengjiang99/gbk" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              </ul>
+            </div>
+          </article>
         </div>
 
-        <hr class="rule" />
-
-        <div id="projects" class="rise d3">
-          <article id="protune">
-            <h2>ProTune AI Camera</h2>
-            <span class="status">App Store live · 1.1+ · 1.2 in review</span>
-            <p>
-              ProTune (shipping name <em>ProTune AI Camera</em>; also listed historically as
-              AI Camera&nbsp;— Auto Recipes) is a viewfinder-first iPhone camera. The home screen
-              is the live preview, not a gallery of filters. You point at a scene, tap Auto
-              Optimize, and the app writes real capture dials — shutter, ISO, EV, white balance,
-              focus, and zoom — instead of painting beauty looks onto a JPEG after the fact.
-            </p>
-            <p>
-              The product problem is familiar to anyone who has collected “photo recipes” from
-              blogs and still ended up guessing dial positions on a phone. ProTune bundles a
-              small catalog of field recipes, then uses a fast on-device Vision pass plus an
-              optional cloud refine — a Grok tool loop grounded in that catalog, so it cannot
-              invent a recipe — to pick and apply the right one. Teach Mode explains which recipe
-              won and why the dials moved. Pro unlocks unlimited Auto Optimize, manual A/S/M
-              dials, and full teach sheets through StoreKit subscriptions; Free Peek keeps the
-              viewfinder and a daily optimize quota.
-            </p>
-            <p>
-              Under the hood the interesting bits are the AVFoundation session that actually
-              accepts those phone targets, on-device speech for voice notes into the same
-              recommend loop, IAP entitlement plumbing, and Meta + SKAdNetwork attribution for
-              the ads path. Bundle id <code>com.ragnus.mvp</code>. Companion marketing site at
-              photo.grepawk.com.
-            </p>
-            <div class="shots" aria-label="ProTune AI Camera App Store screenshots">
-              <a href="/img/protune/01-set-the-shot.webp" target="_blank" rel="noopener"><img src="/img/protune/01-set-the-shot.webp" alt="ProTune AI Camera viewfinder with the Auto Optimize button over a mountain scene at sunset" width="368" height="800" loading="lazy" decoding="async" /></a>
-              <a href="/img/protune/02-auto-optimize.webp" target="_blank" rel="noopener"><img src="/img/protune/02-auto-optimize.webp" alt="ProTune Auto Optimize results: shutter, ISO, EV, white balance and focus changes ready to apply to the camera" width="368" height="800" loading="lazy" decoding="async" /></a>
-              <a href="/img/protune/03-real-dials.webp" target="_blank" rel="noopener"><img src="/img/protune/03-real-dials.webp" alt="ProTune manual capture dials for shutter, ISO, EV, white balance, focus, zoom, torch and look" width="368" height="800" loading="lazy" decoding="async" /></a>
-            </div>
-            <div class="links">
-              <ul>
-                <li><a href="https://apps.apple.com/us/app/protune-ai-camera/id6813991381" target="_blank" rel="noopener noreferrer">App Store — ProTune AI Camera</a></li>
-                <li><a href="https://photo.grepawk.com" target="_blank" rel="noopener noreferrer">Web companion — photo.grepawk.com</a></li>
-                <li><a href="https://github.com/yishengjiang99/photo-recipes" target="_blank" rel="noopener noreferrer">GitHub — photo-recipes</a></li>
-              </ul>
-            </div>
-          </article>
-
-          <hr class="rule" />
-
-          <article id="music-reader">
-            <h2>AI Camera — Music Reader</h2>
-            <span class="status">TestFlight / App Store path · not publicly listed yet</span>
-            <p>
-              Music Reader (home-screen name SheetCam) answers a different camera question:
-              point at engraved Western sheet music and hear the page. The app runs optical
-              music recognition entirely on device — SegNet and encoder models via Core&nbsp;ML,
-              decoder on ONNX Runtime CPU — then emits SMF MIDI plus a note layout so the
-              player can highlight what it is sounding.
-            </p>
-            <p>
-              Playback uses an SF2 SoundFont engine with tempo control, A–B loop, hand mute /
-              solo, and a small instrument palette. Every successful scan lands in an on-device
-              library. Free allows a handful of scans per day; Pro unlocks unlimited via
-              subscription. No account, and photos never leave the phone for recognition.
-            </p>
-            <p>
-              The hard engineering is the locked pipeline: optional Vision crop, staff geometry
-              and dewarp, zero-copy ORT I/O binding for the decoder KV-cache, and keeping memory
-              and warmup budgets honest on real devices. Bundle id <code>com.ragnus.vp</code>.
-              The App Store product page is not public yet, so the links below are the source
-              repo and related privacy page only.
-            </p>
-            <div class="shots" aria-label="Music Reader App Store screenshots">
-              <a href="/img/music-reader/01-snap-and-play.webp" target="_blank" rel="noopener"><img src="/img/music-reader/01-snap-and-play.webp" alt="Music Reader playing back a photographed page of sheet music with the current staff highlighted" width="368" height="800" loading="lazy" decoding="async" /></a>
-              <a href="/img/music-reader/02-slow-it-down.webp" target="_blank" rel="noopener"><img src="/img/music-reader/02-slow-it-down.webp" alt="Music Reader playback of Für Elise with tempo control from 0.5× to 2×" width="368" height="800" loading="lazy" decoding="async" /></a>
-              <a href="/img/music-reader/03-reads-on-device.webp" target="_blank" rel="noopener"><img src="/img/music-reader/03-reads-on-device.webp" alt="Music Reader progress card reading music on the iPhone with GPU acceleration and no internet needed" width="368" height="800" loading="lazy" decoding="async" /></a>
-            </div>
-            <div class="links">
-              <ul>
-                <li><a href="https://github.com/yishengjiang99/omr-sheet-cam" target="_blank" rel="noopener noreferrer">GitHub — omr-sheet-cam</a></li>
-                <li><a href="https://grepawk.com/music-reader/privacy.html" target="_blank" rel="noopener noreferrer">Privacy policy</a></li>
-              </ul>
-            </div>
-          </article>
-
-          <hr class="rule" />
-
-          <article id="finalcut">
-            <h2>FinalCut / FinalCap</h2>
-            <span class="status">Web live · iOS port in progress</span>
-            <p>
-              FinalCut is a chat-driven video editor hosted at grepawk.com. You upload clips,
-              talk to an assistant about what you want, and the server runs FFmpeg for the
-              actual transforms — trim, crop, resize, overlays, transitions between clips,
-              color and a long list of audio filters. The point is not another timeline UI; it
-              is “describe the edit, get a render.”
-            </p>
-            <p>
-              The same product thread continues as FinalCap on iOS (bundle family
-              <code>com.ragnus.w2</code>), porting the editing surface closer to the phone.
-              Auth and billing on the web side use Google OAuth and Stripe; the interesting
-              product constraint is keeping FFmpeg jobs reliable while the chat layer stays
-              useful instead of decorative.
-            </p>
-            <div class="shots" aria-label="FinalCap iOS App Store screenshots">
-              <a href="/img/finalcap/01-chat-the-edit.webp" target="_blank" rel="noopener"><img src="/img/finalcap/01-chat-the-edit.webp" alt="FinalCap chat editor trimming the first second of a clip from a typed request" width="368" height="800" loading="lazy" decoding="async" /></a>
-              <a href="/img/finalcap/04-add-a-title.webp" target="_blank" rel="noopener"><img src="/img/finalcap/04-add-a-title.webp" alt="FinalCap adding a “Day One” title on the clip preview from a chat request" width="368" height="800" loading="lazy" decoding="async" /></a>
-              <a href="/img/finalcap/06-save-to-photos.webp" target="_blank" rel="noopener"><img src="/img/finalcap/06-save-to-photos.webp" alt="FinalCap saving the edited video to Photos without uploading it" width="368" height="800" loading="lazy" decoding="async" /></a>
-            </div>
-            <div class="links">
-              <ul>
-                <li><a href="https://grepawk.com" target="_blank" rel="noopener noreferrer">Live — grepawk.com</a></li>
-                <li><a href="https://github.com/yishengjiang99/finalcut" target="_blank" rel="noopener noreferrer">GitHub — finalcut</a></li>
-              </ul>
-            </div>
-          </article>
-
-          <hr class="rule" />
-
-          <article id="music-radar">
-            <h2>AI Music Radar</h2>
-            <span class="status">Public repo · web demo live · iOS on TestFlight path</span>
-            <p>
-              EarSheet / AI Music Radar is the sibling of Music Reader. Where SheetCam reads a
-              printed page, Music Radar listens: microphone or imported audio goes through a
-              fine-tuned Spotify Basic Pitch model in Core&nbsp;ML and comes out as an engraved
-              staff, SMF MIDI, and MusicXML. Playback reuses the same SF2 engine. Audio stays
-              on the phone.
-            </p>
-            <p>
-              There is also a browser demo that runs Basic Pitch on WebGPU / WebGL / WASM at
-              grepawk.com/music-hear/. The iOS app identity is locked (bundle
-              <code>com.ragnus.pnge</code>); it is public enough to talk about, still early
-              relative to ProTune on the store.
-            </p>
-            <div class="shots" aria-label="AI Music Radar App Store screenshots">
-              <a href="/img/music-radar/01-hear-it.webp" target="_blank" rel="noopener"><img src="/img/music-radar/01-hear-it.webp" alt="AI Music Radar library of recorded takes with a microphone button to record" width="368" height="800" loading="lazy" decoding="async" /></a>
-              <a href="/img/music-radar/03-playback.webp" target="_blank" rel="noopener"><img src="/img/music-radar/03-playback.webp" alt="AI Music Radar engraved sheet music with notes lighting up during playback" width="368" height="800" loading="lazy" decoding="async" /></a>
-              <a href="/img/music-radar/05-export.webp" target="_blank" rel="noopener"><img src="/img/music-radar/05-export.webp" alt="AI Music Radar export options for MIDI, MusicXML, PDF, MP3 and PNG" width="368" height="800" loading="lazy" decoding="async" /></a>
-            </div>
-            <div class="links">
-              <ul>
-                <li><a href="https://grepawk.com/music-hear/" target="_blank" rel="noopener noreferrer">Web demo — music-hear</a></li>
-                <li><a href="https://github.com/yishengjiang99/earsheet" target="_blank" rel="noopener noreferrer">GitHub — earsheet</a></li>
-              </ul>
-            </div>
-          </article>
-
-          <hr class="rule" />
-
-          <article id="gbk">
-            <h2>gbk — SF2 + MIDI Explorer</h2>
-            <span class="status">Live in the browser · open source</span>
-            <p>
-              gbk is a SoundFont&nbsp;2 synthesizer and MIDI player that runs entirely in the
-              browser; the live page calls itself SF2 Explorer and wears a Winamp skin. Load a
-              MIDI file and it plays through GeneralUser&nbsp;GS with a live oscilloscope, a piano
-              roll, and a per-track mixer for volume, expression, pan, mute, and solo. A second
-              tab opens the SoundFont itself, so you can browse its presets and audition the raw
-              PCM samples. A Web MIDI controller can play it live, and any song can be exported
-              as a WAV.
-            </p>
-            <p>
-              The interesting part is how little of it touches the main thread. The SoundFont
-              parser and the synth are hand-written in TypeScript, and the synth runs inside an
-              AudioWorklet: looped sample playback, volume and modulation envelopes, vibrato and
-              modulation LFOs, a modulated low-pass filter, and voice stealing that drops the
-              quietest voice when polyphony runs out. MIDI parsing and scheduling live in a Web
-              Worker that owns the playback clock. Each track gets its own worklet node, and the
-              worker talks to those nodes directly over transferred MessagePorts, so note events
-              never wait on React rendering.
-            </p>
-            <p>
-              After the tracks are mixed, a master stage applies a soft-knee RMS compressor and a
-              stereo-linked lookahead limiter with 5&nbsp;ms of latency. WAV export skips the
-              real-time path entirely: it renders the same synth engine offline from
-              frame-stamped events, masters the mix, and encodes it in chunks. The renderer is
-              also the reference for <a href="#libraries">sf2player-swift</a>, the Swift port
-              that plays back scores in Music Reader and AI Music Radar.
-            </p>
-            <div class="shots" aria-label="gbk SF2 + MIDI Explorer screenshots">
-              <a href="/img/gbk/player.webp" target="_blank" rel="noopener"><img src="/img/gbk/player.webp" alt="gbk’s Winamp-skinned player with the playlist of loaded MIDI files" width="729" height="800" loading="lazy" decoding="async" /></a>
-              <a href="/img/gbk/sf2-explorer.webp" target="_blank" rel="noopener"><img src="/img/gbk/sf2-explorer.webp" alt="gbk’s Winamp-skinned player with the SF2 Explorer listing the SoundFont’s presets by name, bank and program" width="729" height="800" loading="lazy" decoding="async" /></a>
-              <a href="/img/gbk/piano-roll.webp" target="_blank" rel="noopener"><img src="/img/gbk/piano-roll.webp" alt="gbk piano roll view showing the notes of every track scrolling past the playhead during playback" width="729" height="800" loading="lazy" decoding="async" /></a>
-            </div>
-            <div class="links">
-              <ul>
-                <li><a href="https://yishengjiang99.github.io/gbk/" target="_blank" rel="noopener noreferrer">Live — yishengjiang99.github.io/gbk</a></li>
-                <li><a href="https://github.com/yishengjiang99/gbk" target="_blank" rel="noopener noreferrer">GitHub — gbk</a></li>
-              </ul>
-            </div>
-          </article>
-
-          <hr class="rule" />
-
-          <article id="libraries" class="also">
-            <h2>Shared libraries</h2>
-            <p>
-              <a href="https://github.com/yishengjiang99/sf2player-swift" target="_blank" rel="noopener noreferrer">sf2player-swift</a>
-              is the shared SoundFont&nbsp;2 rendering engine (Swift port of the <a href="#gbk">gbk</a> renderer)
-              consumed by Music Reader and Music Radar. Keeping the synth as its own AGPL
-              package means both apps pin a revision and stay out of each other’s player UI.
-            </p>
-          </article>
-
-          <hr class="rule" />
-
-          <article id="earlier" class="also">
-            <h2>Earlier browser experiments</h2>
-            <p>
-              Before the iOS products, a lot of GrepAwk work lived as WASM demos: a
-              <a href="https://yishengjiang99.github.io/sf2rend" target="_blank" rel="noopener noreferrer">browser SoundFont player</a>,
-              an
-              <a href="https://yishengjiang99.github.io/algorithmic-invention/" target="_blank" rel="noopener noreferrer">algorithmic two-part invention</a>,
-              <a href="https://yishengjiang99.github.io/fft-64bit/" target="_blank" rel="noopener noreferrer">FFT spectrum</a>
-              and
-              <a href="https://yishengjiang99.github.io/ff32bit/" target="_blank" rel="noopener noreferrer">zero-copy audio</a>,
-              plus
-              <a href="https://yishengjiang99.github.io/motion-camera/" target="_blank" rel="noopener noreferrer">motion camera</a>
-              and
-              <a href="https://yishengjiang99.github.io/mc4/" target="_blank" rel="noopener noreferrer">BrowserCraft</a>.
-              They are still up if you want the archaeology.
-            </p>
-          </article>
-        </div>
+        <section class="also" aria-labelledby="more">
+          <h2 class="section-title" id="more">More</h2>
+          <p><a href="https://github.com/yishengjiang99/sf2player-swift" target="_blank" rel="noopener noreferrer">sf2player-swift</a>: the Swift port of the gbk synth. It plays the scores in Music Reader and AI Music Radar.</p>
+          <p>Earlier browser demos:
+            <a href="https://yishengjiang99.github.io/sf2rend" target="_blank" rel="noopener noreferrer">SoundFont player</a>,
+            <a href="https://yishengjiang99.github.io/algorithmic-invention/" target="_blank" rel="noopener noreferrer">two-part invention</a>,
+            <a href="https://yishengjiang99.github.io/fft-64bit/" target="_blank" rel="noopener noreferrer">FFT spectrum</a>,
+            <a href="https://yishengjiang99.github.io/ff32bit/" target="_blank" rel="noopener noreferrer">zero-copy audio</a>,
+            <a href="https://yishengjiang99.github.io/motion-camera/" target="_blank" rel="noopener noreferrer">motion camera</a>,
+            <a href="https://yishengjiang99.github.io/mc4/" target="_blank" rel="noopener noreferrer">BrowserCraft</a>.
+          </p>
+        </section>
 
         <footer>On GitHub since 2012 · Static page, no analytics</footer>
       </div>
