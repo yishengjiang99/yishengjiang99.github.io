@@ -33,7 +33,7 @@
       (function () {
         try {
           var s = localStorage.getItem("theme");
-          var t = s === "light" || s === "dark" ? s : matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          var t = s === "dark" ? "dark" : "light";
           document.documentElement.dataset.theme = t;
           var meta = document.querySelector('meta[name="theme-color"]');
           if (meta) meta.setAttribute("content", t === "dark" ? "#0d1211" : "#eef3f2");
@@ -161,6 +161,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
+      .featured .card { border-color: var(--accent); }
       .grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
       @media (min-width: 760px) { .grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
       .card {
@@ -276,25 +277,61 @@
           </ul>
         </section>
 
-        <h2 class="section-title" id="projects">Projects</h2>
-        <div class="grid">
+        <h2 class="section-title" id="recent">Recent work</h2>
+        <div class="grid featured">
           <article class="card" id="finalcap">
             <div class="shots">
               <img src="/img/finalcap/01-chat-the-edit.webp" srcset="/img/finalcap/01-chat-the-edit-300.webp 300w, /img/finalcap/01-chat-the-edit.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="FinalCap chat editor trimming a clip from a typed request" width="600" height="1304" fetchpriority="high" decoding="async" />
               <img src="/img/finalcap/05-color-on-command.webp" srcset="/img/finalcap/05-color-on-command-300.webp 300w, /img/finalcap/05-color-on-command.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="FinalCap applying a warmer color look from a chat request" width="600" height="1304" decoding="async" />
             </div>
             <div class="card-body">
-              <h3>FinalCap</h3>
-              <p class="status">Web live · iOS app coming soon</p>
-              <p>AI video editor. Chat with Grok, and it runs 45 FFmpeg tools for you.</p>
+              <h3>FinalCut / FinalCap</h3>
+              <p class="status">Live on the App Store · web live</p>
+              <p><strong>The FinalCap iOS app is now live on the App Store.</strong> Chat with Grok to edit video. It runs 45 FFmpeg tools for you, and now takes voice commands too.</p>
               <p>The web app edits in your browser with ffmpeg.wasm, so your video isn’t uploaded. In-browser captions, translation, and lyric captions. Lighthouse performance: 99 mobile, 100 desktop.</p>
               <ul class="links">
+                <li><a href="https://apps.apple.com/us/app/finalcap-ai-video-editor/id6815060815" target="_blank" rel="noopener noreferrer"><strong>Download on the App Store</strong></a></li>
                 <li><a href="https://grepawk.com" target="_blank" rel="noopener noreferrer">grepawk.com</a></li>
                 <li><a href="https://github.com/yishengjiang99/finalcut" target="_blank" rel="noopener noreferrer">GitHub</a></li>
               </ul>
             </div>
           </article>
 
+
+          <article class="card" id="gbk">
+            <div class="shots">
+              <img src="/img/gbk/player.webp" srcset="/img/gbk/player-300.webp 300w, /img/gbk/player.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="gbk’s Winamp-skinned player with a playlist of MIDI song titles" width="600" height="658" loading="lazy" decoding="async" />
+              <img src="/img/gbk/sf2-explorer.webp" srcset="/img/gbk/sf2-explorer-300.webp 300w, /img/gbk/sf2-explorer.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="gbk SF2 Explorer listing the SoundFont’s presets by name, bank and program" width="600" height="658" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <h3>gbk Composer</h3>
+              <p class="status">Live · open source</p>
+              <p>An AI composer studio. Describe a song, and agents write the notes, tracks and arrangement using 47 tools.</p>
+              <p>A custom SF2 synth plays it in the browser, with Web MIDI input. Share songs and fork other people's on Explore. An MCP server for ChatGPT and Codex renders WAV and MIDI headlessly on the server.</p>
+              <ul class="links">
+                <li><a href="https://compose.grepawk.com" target="_blank" rel="noopener noreferrer">compose.grepawk.com</a></li>
+                <li><a href="https://yishengjiang99.github.io/gbk/" target="_blank" rel="noopener noreferrer">SF2 + MIDI Explorer</a></li>
+                <li><a href="https://github.com/yishengjiang99/gbk" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card" id="filmcraft">
+            <div class="card-body">
+              <h3>FilmCraft</h3>
+              <p class="status">Web demo live · open source</p>
+              <p>A clean-room take on the Premiere Pro workflow (editing, color and sound) in pure Rust. Runs native on macOS, Windows and Linux, and in the browser via WebAssembly.</p>
+              <p>I added the agent: type or speak a request, and it runs the edit for you through a tool loop. Voice uses ElevenLabs. WebMCP tools are included.</p>
+              <ul class="links">
+                <li><a href="https://grepawk.com/filmcraft/" target="_blank" rel="noopener noreferrer">grepawk.com/filmcraft</a></li>
+                <li><a href="https://github.com/yishengjiang99/filmcraft" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <h2 class="section-title" id="projects">More apps</h2>
+        <div class="grid">
           <article class="card" id="protune">
             <div class="shots">
               <img src="/img/protune/02-auto-optimize.webp" srcset="/img/protune/02-auto-optimize-300.webp 300w, /img/protune/02-auto-optimize.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="ProTune Auto Optimize setting shutter, ISO, EV, white balance and focus for a mountain sunset" width="600" height="1304" decoding="async" />
@@ -346,25 +383,7 @@
                 <li><a href="https://github.com/yishengjiang99/earsheet" target="_blank" rel="noopener noreferrer">GitHub</a></li>
               </ul>
             </div>
-          </article>
-
-          <article class="card" id="gbk">
-            <div class="shots">
-              <img src="/img/gbk/player.webp" srcset="/img/gbk/player-300.webp 300w, /img/gbk/player.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="gbk’s Winamp-skinned player with a playlist of MIDI song titles" width="600" height="658" loading="lazy" decoding="async" />
-              <img src="/img/gbk/sf2-explorer.webp" srcset="/img/gbk/sf2-explorer-300.webp 300w, /img/gbk/sf2-explorer.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="gbk SF2 Explorer listing the SoundFont’s presets by name, bank and program" width="600" height="658" loading="lazy" decoding="async" />
-            </div>
-            <div class="card-body">
-              <h3>gbk — SF2 + MIDI Explorer</h3>
-              <p class="status">Live in the browser · open source</p>
-              <p>SoundFont synth and MIDI player in the browser. Browse presets and audition samples.</p>
-              <p>The synth runs in an AudioWorklet, off the main thread. Export any song to WAV.</p>
-              <ul class="links">
-                <li><a href="https://yishengjiang99.github.io/gbk/" target="_blank" rel="noopener noreferrer">Open gbk</a></li>
-                <li><a href="https://github.com/yishengjiang99/gbk" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-              </ul>
-            </div>
-          </article>
-        </div>
+          </article>        </div>
 
         <section class="also" aria-labelledby="more">
           <h2 class="section-title" id="more">More</h2>
