@@ -4,24 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Yisheng Jiang — Full-stack agentic AI engineer</title>
-    <meta name="description" content="Full-stack agentic AI engineer. I build and run AI camera, music, and video apps: FinalCap, ProTune AI Camera, Music Reader, AI Music Radar, and gbk." />
+    <meta name="description" content="Indie developer building agentic AI apps: FinalCap AI video editor (live on the App Store), gbk Composer (WebMCP app and ChatGPT plugin), and FilmCraft." />
     <link rel="canonical" href="https://yishengjiang99.github.io/" />
     <meta name="author" content="Yisheng Jiang" />
     <meta name="theme-color" content="#eef3f2" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Yisheng Jiang" />
     <meta property="og:title" content="Yisheng Jiang — Full-stack agentic AI engineer" />
-    <meta property="og:description" content="AI camera, music, and video apps, with tool calls running on the phone, in the browser, or on the server." />
+    <meta property="og:description" content="Recent work: FinalCap AI video editor, live on the App Store; gbk Composer, an AI music studio that works as a WebMCP app and ChatGPT plugin; and FilmCraft." />
     <meta property="og:url" content="https://yishengjiang99.github.io/" />
-    <meta property="og:image" content="https://yishengjiang99.github.io/og.jpg" />
+    <meta property="og:image" content="https://yishengjiang99.github.io/og.jpg?v=2" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Yisheng Jiang: screenshots of FinalCap, ProTune AI Camera, Music Reader and AI Music Radar" />
+    <meta property="og:image:alt" content="Screenshots of FinalCap on iPhone, the gbk Composer studio and the gbk player in ChatGPT" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@YishengJiang" />
     <meta name="twitter:title" content="Yisheng Jiang — Full-stack agentic AI engineer" />
-    <meta name="twitter:description" content="AI camera, music, and video apps, with tool calls running on the phone, in the browser, or on the server." />
-    <meta name="twitter:image" content="https://yishengjiang99.github.io/og.jpg" />
+    <meta name="twitter:description" content="Recent work: FinalCap AI video editor, live on the App Store; gbk Composer, an AI music studio that works as a WebMCP app and ChatGPT plugin; and FilmCraft." />
+    <meta name="twitter:image" content="https://yishengjiang99.github.io/og.jpg?v=2" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preload" href="/fonts/fraunces-560.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin />
@@ -161,6 +161,10 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
+      .shots-stack { grid-template-columns: 1fr; }
+      .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0; }
+      .tags .status { margin: 0; }
+      .card code { font-size: 0.85em; word-break: break-all; }
       .featured .card { border-color: var(--accent); }
       .grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
       @media (min-width: 760px) { .grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
@@ -299,17 +303,24 @@
 
 
           <article class="card" id="gbk">
-            <div class="shots">
-              <img src="/img/gbk/player.webp" srcset="/img/gbk/player-300.webp 300w, /img/gbk/player.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="gbk’s Winamp-skinned player with a playlist of MIDI song titles" width="600" height="658" loading="lazy" decoding="async" />
-              <img src="/img/gbk/sf2-explorer.webp" srcset="/img/gbk/sf2-explorer-300.webp 300w, /img/gbk/sf2-explorer.webp 600w" sizes="(min-width: 760px) 230px, 42vw" alt="gbk SF2 Explorer listing the SoundFont’s presets by name, bank and program" width="600" height="658" loading="lazy" decoding="async" />
+            <div class="shots shots-stack">
+              <img src="/img/gbk/studio.webp" srcset="/img/gbk/studio-600.webp 600w, /img/gbk/studio.webp 1200w" sizes="(min-width: 760px) 470px, 92vw" alt="GBK Composer studio: piano roll of a fugue with tracks, automation lanes and the AI Composer panel" width="1200" height="760" loading="lazy" decoding="async" />
+              <img src="/img/gbk/chatgpt-player.webp" srcset="/img/gbk/chatgpt-player-300.webp 300w, /img/gbk/chatgpt-player.webp 600w" sizes="(min-width: 760px) 470px, 92vw" alt="GBK player inside ChatGPT showing Fugue in D minor with a piano roll and play button" width="600" height="425" loading="lazy" decoding="async" />
             </div>
             <div class="card-body">
               <h3>gbk Composer</h3>
-              <p class="status">Live · open source</p>
-              <p>An AI composer studio. Describe a song, and agents write the notes, tracks and arrangement using 47 tools.</p>
-              <p>A custom SF2 synth plays it in the browser, with Web MIDI input. Share songs and fork other people's on Explore. An MCP server for ChatGPT and Codex renders WAV and MIDI headlessly on the server.</p>
+              <p class="tags"><span class="status">WebMCP app</span> <span class="status">ChatGPT plugin</span> <span class="status">Live · open source</span></p>
+              <p>An AI music studio. Describe a song, and an agent writes the notes, tracks and arrangement. A SoundFont synth plays it in your browser.</p>
+              <p>It's a <strong>WebMCP app</strong>: the studio gives its tools to in-page agents through <code>navigator.modelContext</code>. It also <strong>works as a ChatGPT plugin</strong>. Connect <code>https://compose.grepawk.com/mcp</code> in ChatGPT or Codex. Guests need no login.</p>
+              <ul class="points">
+                <li>Server renders WAV and MIDI with no browser, and songs play right in the ChatGPT chat.</li>
+                <li>Songs auto-save privately to My songs. Publish with an AI-suggested title, share by song-name link, or fork.</li>
+                <li>Explore lists public songs. A floating piano keyboard and Web MIDI input let you play and record.</li>
+                <li>A discovery eval suite tests how agents find and use the tools.</li>
+              </ul>
               <ul class="links">
                 <li><a href="https://compose.grepawk.com" target="_blank" rel="noopener noreferrer">compose.grepawk.com</a></li>
+                <li><a href="https://compose.grepawk.com/chatgpt" target="_blank" rel="noopener noreferrer">Use in ChatGPT</a></li>
                 <li><a href="https://yishengjiang99.github.io/gbk/" target="_blank" rel="noopener noreferrer">SF2 + MIDI Explorer</a></li>
                 <li><a href="https://github.com/yishengjiang99/gbk" target="_blank" rel="noopener noreferrer">GitHub</a></li>
               </ul>
