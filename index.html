@@ -165,6 +165,7 @@
       .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0; }
       .tags .status { margin: 0; }
       .card code { font-size: 0.85em; word-break: break-all; }
+      .meta-note { margin: 0; font-size: 0.85rem; color: var(--muted); }
       .featured .card { border-color: var(--accent); }
       .grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
       @media (min-width: 760px) { .grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
@@ -328,11 +329,21 @@
           </article>
 
           <article class="card" id="filmcraft">
+            <div class="shots shots-stack">
+              <img src="/img/filmcraft/export-speedups.webp" srcset="/img/filmcraft/export-speedups-600.webp 600w, /img/filmcraft/export-speedups.webp 1024w" sizes="(min-width: 760px) 470px, 92vw" alt="Chart: FilmCraft browser export before and after. Export wall time 9.3x, 35x and 111x faster; page 95th-percentile frame time 19x to 58x better; peak WebAssembly memory 3.0x to 3.9x lower" width="1200" height="760" loading="lazy" decoding="async" />
+            </div>
             <div class="card-body">
               <h3>FilmCraft</h3>
-              <p class="status">Web demo live · open source</p>
-              <p>A clean-room take on the Premiere Pro workflow (editing, color and sound) in pure Rust. Runs native on macOS, Windows and Linux, and in the browser via WebAssembly.</p>
-              <p>I added the agent: type or speak a request, and it runs the edit for you through a tool loop. Voice uses ElevenLabs. WebMCP tools are included.</p>
+              <p class="tags"><span class="status">Optimization</span> <span class="status">Web demo live · open source</span></p>
+              <p><strong>Browser export of 6 seconds of 4K went from about 18 minutes to about 10 seconds.</strong> FilmCraft is an open-source Rust video editor that also runs in a web page. In my fork, each export stage moved to the hardware built for it.</p>
+              <ul class="points">
+                <li>Export time: 4K with heavy effects went from 1118 s to 10.09 s (111x), and a 12 s 1080p edit from 168.2 s to 4.80 s (35x).</li>
+                <li>Hardware H.264 through WebCodecs: encoding one 1080p frame went from 99 ms to 9 ms.</li>
+                <li>Compositing runs on the GPU through WebGPU, with async read-back. On the 1080p edit it's 10.5x faster than the CPU path.</li>
+                <li>Lean export caches, a 4 GiB heap and streaming to OPFS: peak WebAssembly memory went from 1933 to 655 MiB on 4K.</li>
+                <li>The editor stays responsive. The page's 95th-percentile frame time while exporting 4K went from 5292 ms to 91 ms.</li>
+              </ul>
+              <p class="meta-note">Measured on an Apple M4 Pro in Chrome 155, with each output checked against a reference render. Read: <a href="https://blog.grepawk.com/blog/webassembly-video-export-18-minutes-to-10-seconds" target="_blank" rel="noopener noreferrer">18 minutes to 10 seconds</a> · <a href="https://blog.grepawk.com/blog/filmcraft-optimization-results" target="_blank" rel="noopener noreferrer">How browser export got fast</a> · <a href="https://blog.grepawk.com/blog/filmcraft-fork-webassembly-speedups" target="_blank" rel="noopener noreferrer">SIMD and an adaptive budget</a></p>
               <ul class="links">
                 <li><a href="https://grepawk.com/filmcraft/" target="_blank" rel="noopener noreferrer">grepawk.com/filmcraft</a></li>
                 <li><a href="https://github.com/yishengjiang99/filmcraft" target="_blank" rel="noopener noreferrer">GitHub</a></li>
