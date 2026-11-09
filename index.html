@@ -294,6 +294,7 @@
               <p class="status">Live on the App Store · web live</p>
               <p><strong>The FinalCap iOS app is now live on the App Store.</strong> Chat with Grok to edit video. It runs 45 FFmpeg tools for you, and now takes voice commands too.</p>
               <p>The web app edits in your browser with ffmpeg.wasm, so your video isn’t uploaded. In-browser captions, translation, and lyric captions. Lighthouse performance: 99 mobile, 100 desktop.</p>
+              <p class="meta-note">Read: <a href="https://grepawk.com/blog/finalcap-model-plans-client-renders" target="_blank" rel="noopener noreferrer">Chat video editing</a> · <a href="https://grepawk.com/blog/bilingual-captions-elevenlabs-streaming" target="_blank" rel="noopener noreferrer">Bilingual captions</a> · <a href="https://grepawk.com/blog/finalcap-ios-timeline-chinese-captions" target="_blank" rel="noopener noreferrer">Timeline and Chinese captions</a></p>
               <ul class="links">
                 <li><a href="https://apps.apple.com/us/app/finalcap-ai-video-editor/id6815060815" target="_blank" rel="noopener noreferrer"><strong>Download on the App Store</strong></a></li>
                 <li><a href="https://grepawk.com" target="_blank" rel="noopener noreferrer">grepawk.com</a></li>
@@ -312,13 +313,15 @@
               <h3>gbk Composer</h3>
               <p class="tags"><span class="status">WebMCP app</span> <span class="status">ChatGPT plugin</span> <span class="status">Live · open source</span></p>
               <p>An AI music studio. Describe a song, and an agent writes the notes, tracks and arrangement. A SoundFont synth plays it in your browser.</p>
-              <p>It's a <strong>WebMCP app</strong>: the studio gives its tools to in-page agents through <code>navigator.modelContext</code>. It also <strong>works as a ChatGPT plugin</strong>. Connect <code>https://compose.grepawk.com/mcp</code> in ChatGPT or Codex. Guests need no login.</p>
+              <p>It's a <strong>WebMCP app</strong> and a <strong>remote MCP server</strong>: the studio gives its tools to in-page agents through <code>navigator.modelContext</code>, and any MCP client can call the same composer tools at <code>https://compose.grepawk.com/mcp</code>. Guests need no login. It also works as a ChatGPT plugin and with Codex.</p>
               <ul class="points">
-                <li>Server renders WAV and MIDI with no browser, and songs play right in the ChatGPT chat.</li>
+                <li>Server renders WAV and MIDI with no browser, and songs can play right in an MCP client's chat.</li>
                 <li>Songs auto-save privately to My songs. Publish with an AI-suggested title, share by song-name link, or fork.</li>
                 <li>Explore lists public songs. A floating piano keyboard and Web MIDI input let you play and record.</li>
+                <li>One audio and event path feeds the SoundFont synth: files, the workstation, sheet scans and the recorder all load as SMF.</li>
                 <li>A discovery eval suite tests how agents find and use the tools.</li>
               </ul>
+              <p class="meta-note">Read: <a href="https://grepawk.com/blog/gbk-composer-mcp-server" target="_blank" rel="noopener noreferrer">Composer MCP server</a> · <a href="https://grepawk.com/blog/gbk-audio-and-event-path" target="_blank" rel="noopener noreferrer">Audio and event path</a> · <a href="https://grepawk.com/blog/gbk-webmcp-music-workstation-tools" target="_blank" rel="noopener noreferrer">WebMCP tools</a> · <a href="https://grepawk.com/blog/how-soundfonts-work" target="_blank" rel="noopener noreferrer">How SoundFonts work</a></p>
               <ul class="links">
                 <li><a href="https://compose.grepawk.com" target="_blank" rel="noopener noreferrer">compose.grepawk.com</a></li>
                 <li><a href="https://compose.grepawk.com/chatgpt" target="_blank" rel="noopener noreferrer">Use in ChatGPT</a></li>
@@ -343,7 +346,7 @@
                 <li>Lean export caches, a 4 GiB heap and streaming to OPFS: peak WebAssembly memory went from 1933 to 655 MiB on 4K.</li>
                 <li>The editor stays responsive. The page's 95th-percentile frame time while exporting 4K went from 5292 ms to 91 ms.</li>
               </ul>
-              <p class="meta-note">Measured on an Apple M4 Pro in Chrome 155, with each output checked against a reference render. Read: <a href="https://blog.grepawk.com/blog/webassembly-video-export-18-minutes-to-10-seconds" target="_blank" rel="noopener noreferrer">18 minutes to 10 seconds</a> · <a href="https://blog.grepawk.com/blog/filmcraft-optimization-results" target="_blank" rel="noopener noreferrer">How browser export got fast</a> · <a href="https://blog.grepawk.com/blog/filmcraft-fork-webassembly-speedups" target="_blank" rel="noopener noreferrer">SIMD and an adaptive budget</a></p>
+              <p class="meta-note">Measured on an Apple M4 Pro in Chrome 155, with each output checked against a reference render. Read: <a href="https://grepawk.com/blog/webassembly-video-export-18-minutes-to-10-seconds" target="_blank" rel="noopener noreferrer">18 minutes to 10 seconds</a> · <a href="https://grepawk.com/blog/filmcraft-optimization-results" target="_blank" rel="noopener noreferrer">How browser export got fast</a> · <a href="https://grepawk.com/blog/filmcraft-fork-webassembly-speedups" target="_blank" rel="noopener noreferrer">SIMD and an adaptive budget</a></p>
               <ul class="links">
                 <li><a href="https://grepawk.com/filmcraft/" target="_blank" rel="noopener noreferrer">grepawk.com/filmcraft</a></li>
                 <li><a href="https://github.com/yishengjiang99/filmcraft" target="_blank" rel="noopener noreferrer">GitHub</a></li>
@@ -363,8 +366,14 @@
               <h3>ProTune AI Camera</h3>
               <p class="status">Live on the App Store</p>
               <p>The AI camera that sets shutter, ISO, and focus for you. Formerly AI Camera – Auto Recipes.</p>
-              <p>On-device Vision reads the scene. Grok picks a recipe, and the app sets the real camera dials.</p>
-              <p>Personalized push reminders, written by Grok.</p>
+              <p>Auto Optimize runs a sense → reason → apply → verify loop on the live viewfinder. On-device Vision reads the scene; a recipe scorer picks a field technique; the app writes shutter, ISO, EV, white balance and focus to the real camera dials. It is not a filter. You still press the shutter.</p>
+              <p>Grok can refine a recommendation or coach from a scene note. Personalized push reminders are written by Grok.</p>
+              <ul class="points">
+                <li>First Auto Optimize pass stays on the phone: no pixels leave the device.</li>
+                <li>Before/after chips show exactly which dials moved; Teach mode explains why.</li>
+                <li>Pro unlocks unlimited Auto Optimize, manual dials and full Teach Mode.</li>
+              </ul>
+              <p class="meta-note">Read: <a href="https://grepawk.com/blog/protune-recipes-to-camera-settings" target="_blank" rel="noopener noreferrer">Recipes to camera settings</a> · <a href="https://grepawk.com/blog/protune-1-4-pro" target="_blank" rel="noopener noreferrer">ProTune 1.4 / Pro</a> · <a href="https://grepawk.com/blog/protune-selfie-auto-optimize" target="_blank" rel="noopener noreferrer">Selfie Auto Optimize</a></p>
               <ul class="links">
                 <li><a href="https://apps.apple.com/app/id6813991381" target="_blank" rel="noopener noreferrer">App Store</a></li>
                 <li><a href="https://photo.grepawk.com" target="_blank" rel="noopener noreferrer">photo.grepawk.com</a></li>
@@ -382,7 +391,12 @@
               <h3>AI Camera – Music Reader</h3>
               <p class="status">In App Store review · coming soon</p>
               <p>Snap sheet music and hear it play. The page highlights as it follows along.</p>
-              <p>Recognition runs on the iPhone with Core ML and ONNX Runtime. No upload, no account.</p>
+              <p>Recognition is a Swift port of the open-source homr pipeline. SegNet finds the ink, an encoder reads each staff, and a decoder writes symbols into MIDI. The models ship with the app and run through ONNX Runtime with its Core ML provider. No upload, no account.</p>
+              <ul class="points">
+                <li>Playback uses the on-device SoundFont synth and highlights each note on the page image.</li>
+                <li>Decoder stays in fp32 on CPU so output matches the reference token for token.</li>
+              </ul>
+              <p class="meta-note">Read: <a href="https://grepawk.com/blog/how-music-reader-recognizes-sheet-music" target="_blank" rel="noopener noreferrer">How recognition works</a> · <a href="https://grepawk.com/blog/music-reader-coreml-vs-onnx" target="_blank" rel="noopener noreferrer">Core ML or ONNX Runtime?</a></p>
               <ul class="links">
                 <li><a href="https://github.com/yishengjiang99/omr-sheet-cam" target="_blank" rel="noopener noreferrer">GitHub</a></li>
               </ul>
@@ -398,7 +412,12 @@
               <h3>AI Music Radar</h3>
               <p class="status">In App Store review · coming soon</p>
               <p>Turns what you hear into sheet music, live on your iPhone.</p>
-              <p>A Basic Pitch model runs on-device with Core ML. Export MIDI, MusicXML, or PDF.</p>
+              <p>Microphone audio or an imported file goes through a Basic Pitch model on Core ML. A Swift decoder turns note probabilities into timed pitches, then the app quantizes tempo, meter and key and engraves a staff. No audio leaves the phone.</p>
+              <ul class="points">
+                <li>Export MIDI, MusicXML, or PDF. Playback highlights notes on the engraved page.</li>
+                <li>Works in airplane mode once the model is on the device.</li>
+              </ul>
+              <p class="meta-note">Read: <a href="https://grepawk.com/blog/ai-music-radar-audio-to-sheet-music" target="_blank" rel="noopener noreferrer">Audio to sheet music</a></p>
               <ul class="links">
                 <li><a href="https://music.grepawk.com" target="_blank" rel="noopener noreferrer">music.grepawk.com</a></li>
                 <li><a href="https://grepawk.com/music-hear/" target="_blank" rel="noopener noreferrer">Web demo</a></li>
@@ -410,6 +429,7 @@
         <section class="also" aria-labelledby="more">
           <h2 class="section-title" id="more">More</h2>
           <p><a href="https://github.com/yishengjiang99/sf2player-swift" target="_blank" rel="noopener noreferrer">sf2player-swift</a>: the Swift port of the gbk synth. It plays the scores in Music Reader and AI Music Radar.</p>
+          <p>Writing: how the apps are built on the <a href="https://grepawk.com/blog" target="_blank" rel="noopener noreferrer">GrepAwk blog</a>.</p>
           <p>Earlier browser demos:
             <a href="https://yishengjiang99.github.io/sf2rend" target="_blank" rel="noopener noreferrer">SoundFont player</a>,
             <a href="https://algorithmic-invention.grepawk.com/" target="_blank" rel="noopener noreferrer">two-part invention</a>,
